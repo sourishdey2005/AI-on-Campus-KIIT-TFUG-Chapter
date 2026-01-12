@@ -103,8 +103,8 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
               {[
                 { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight' },
                 { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
-                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy' },
-                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy' }
+                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },
+                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' }
               ].map((m, i) => (
                 <div key={i} className="glass p-8 rounded-3xl border-white/5 text-center group hover:border-red-500/30 transition-all">
                   <div className="w-20 h-20 bg-neutral-900 rounded-full mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform overflow-hidden flex items-center justify-center">
