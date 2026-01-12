@@ -13,8 +13,8 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
         <div className="grid md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-orange-600 rounded flex items-center justify-center overflow-hidden">
-                <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-cover" />
+              <div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden p-1 shadow-lg">
+                <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-contain" />
               </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight">AI on Campus</h1>

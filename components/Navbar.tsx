@@ -29,8 +29,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-4 group">
-          <div className="w-10 h-10 bg-orange-600/20 backdrop-blur-md border border-orange-500/30 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg shadow-orange-600/10">
-            <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-cover" />
+          <div className="w-12 h-12 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg shadow-orange-600/5">
+            <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-contain" />
           </div>
           <div className="hidden sm:block">
             <h1 className="text-xl font-black tracking-tighter">AI on Campus</h1>
