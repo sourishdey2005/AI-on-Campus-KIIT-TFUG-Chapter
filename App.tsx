@@ -203,108 +203,55 @@ const App: React.FC = () => {
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-500 font-black mb-20">Structural Hierarchy</h2>
             
             <div className="flex flex-col items-center">
-              {/* Level 0: FIC */}
-              <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
-                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">FIC</p>
-                </div>
-                <div className="w-px h-10 bg-gradient-to-b from-white/20 to-white/10"></div>
-              </div>
-
-              {/* Level 0.5: Associate FIC */}
-              <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
-                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Associate FIC</p>
-                </div>
-                <div className="w-px h-10 bg-gradient-to-b from-white/10 to-white/5"></div>
-              </div>
-
-              {/* Level 0.7: Mentors */}
-              <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
-                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Mentors</p>
-                </div>
-                <div className="w-px h-10 bg-gradient-to-b from-white/10 to-white/5"></div>
-              </div>
-
-              {/* Level 1: President */}
-              <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
-                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">President</p>
-                </div>
-                <div className="w-px h-12 bg-gradient-to-b from-white/10 to-white/5"></div>
+              {/* Top Tier: FIC -> Associate FIC -> Mentors -> President */}
+              <div className="space-y-0 flex flex-col items-center">
+                <HierarchyNode label="FIC" color="orange" />
+                <Connector length="h-10" />
+                <HierarchyNode label="Associate FIC" color="orange" />
+                <Connector length="h-10" />
+                <HierarchyNode label="Mentors" color="orange" />
+                <Connector length="h-10" />
+                <HierarchyNode label="President" color="orange" />
+                <Connector length="h-12" />
               </div>
 
               {/* Branching to Vice Presidents */}
-              <div className="relative w-full max-w-4xl">
-                {/* Horizontal Connector */}
+              <div className="relative w-full max-w-5xl">
+                {/* Horizontal Connector for VPs */}
                 <div className="absolute top-0 left-1/4 right-1/4 h-px bg-white/10"></div>
                 
-                <div className="grid grid-cols-2 gap-10 mt-0">
-                  {/* VP 1 */}
+                <div className="grid grid-cols-2 gap-12 mt-0">
+                  {/* VP Wing 1 */}
                   <div className="flex flex-col items-center pt-10 relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
-                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center justify-center">
-                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
+                    <HierarchyNode label="Vice President" color="orange" size="small" />
+                    <Connector length="h-12" />
+                    
+                    {/* Branching Leads */}
+                    <div className="grid grid-cols-2 gap-4 w-full px-4">
+                      <ExecutionBranch title="Technical" label="Tech Lead" color="blue" subs={['POC', 'Asst POC', 'Coordinator', 'Asst Coordinator']} />
+                      <ExecutionBranch title="Operational" label="Non-Tech Lead" color="purple" subs={['POC', 'Asst POC', 'Coordinator', 'Asst Coordinator']} />
                     </div>
-                    <div className="w-px h-12 bg-white/5"></div>
                   </div>
 
-                  {/* VP 2 */}
+                  {/* VP Wing 2 */}
                   <div className="flex flex-col items-center pt-10 relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
-                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center justify-center">
-                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
-                    </div>
-                    <div className="w-px h-12 bg-white/5"></div>
-                  </div>
-                </div>
-              </div>
+                    <HierarchyNode label="Vice President" color="orange" size="small" />
+                    <Connector length="h-12" />
 
-              {/* Final Detailed Branches: Technical & Operational Execution */}
-              <div className="relative w-full max-w-5xl mt-4">
-                <div className="absolute top-0 left-[12.5%] right-[12.5%] h-px bg-white/5"></div>
-                
-                <div className="grid grid-cols-4 gap-6 pt-10">
-                  {/* Technical Branch */}
-                  <div className="flex flex-col items-center relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
-                    <div className="p-5 glass rounded-xl border-white/5 hover:border-blue-500/30 transition-all w-full text-center group">
-                      <p className="text-[8px] text-blue-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-blue-400 transition-colors">Research</p>
-                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Domain POCs</h6>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
-                    <div className="p-5 glass rounded-xl border-white/5 hover:border-blue-500/30 transition-all w-full text-center group">
-                      <p className="text-[8px] text-blue-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-blue-400 transition-colors">Engineering</p>
-                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Technical Leads</h6>
-                    </div>
-                  </div>
-
-                  {/* Operational Branch */}
-                  <div className="flex flex-col items-center relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
-                    <div className="p-5 glass rounded-xl border-white/5 hover:border-purple-500/30 transition-all w-full text-center group">
-                      <p className="text-[8px] text-purple-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-purple-400 transition-colors">Management</p>
-                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Ops Coordinators</h6>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col items-center relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
-                    <div className="p-5 glass rounded-xl border-white/5 hover:border-purple-500/30 transition-all w-full text-center group">
-                      <p className="text-[8px] text-purple-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-purple-400 transition-colors">Creative</p>
-                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Media Leads</h6>
+                    {/* Branching Leads */}
+                    <div className="grid grid-cols-2 gap-4 w-full px-4">
+                      <ExecutionBranch title="Technical" label="Tech Lead" color="blue" subs={['POC', 'Asst POC', 'Coordinator', 'Asst Coordinator']} />
+                      <ExecutionBranch title="Operational" label="Non-Tech Lead" color="purple" subs={['POC', 'Asst POC', 'Coordinator', 'Asst Coordinator']} />
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Bottom tag */}
-              <div className="mt-20 px-8 py-3 rounded-full glass border-white/5 text-[9px] font-black uppercase tracking-[0.5em] text-neutral-600">
-                Authorized Executive Structure
+              <div className="mt-32 px-8 py-3 rounded-full glass border-white/5 text-[9px] font-black uppercase tracking-[0.5em] text-neutral-600">
+                Official Multi-Tiered Society Framework
               </div>
             </div>
           </div>
@@ -322,6 +269,62 @@ const App: React.FC = () => {
       )}
 
       <Chatbot />
+    </div>
+  );
+};
+
+/* Internal UI Helpers for Hierarchy */
+
+const HierarchyNode: React.FC<{ label: string; color: 'orange' | 'blue' | 'purple'; size?: 'normal' | 'small' }> = ({ label, color, size = 'normal' }) => {
+  const colorMap = {
+    orange: 'text-orange-500 border-orange-500/30 hover:border-orange-500/60',
+    blue: 'text-blue-500 border-blue-500/30 hover:border-blue-500/60',
+    purple: 'text-purple-500 border-purple-500/30 hover:border-purple-500/60'
+  };
+
+  return (
+    <motion.div 
+      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      className={`px-10 py-5 glass rounded-2xl border transition-all ${size === 'small' ? 'min-w-[200px]' : 'min-w-[280px]'} flex items-center justify-center ${colorMap[color]}`}
+    >
+      <p className="text-[10px] font-black uppercase tracking-[0.4em]">{label}</p>
+    </motion.div>
+  );
+};
+
+const Connector: React.FC<{ length: string }> = ({ length }) => (
+  <div className={`w-px ${length} bg-gradient-to-b from-white/20 to-white/5`}></div>
+);
+
+const ExecutionBranch: React.FC<{ title: string; label: string; color: 'blue' | 'purple'; subs: string[] }> = ({ title, label, color, subs }) => {
+  const colorMap = {
+    blue: 'blue-500',
+    purple: 'purple-500'
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className={`text-[8px] font-black uppercase tracking-widest text-neutral-600 mb-2`}>{title}</div>
+      <div className={`px-4 py-3 glass rounded-xl border border-${colorMap[color]}/20 min-w-full text-center hover:border-${colorMap[color]}/50 transition-all`}>
+        <p className={`text-[9px] text-${colorMap[color]} font-black uppercase tracking-[0.2em]`}>{label}</p>
+      </div>
+      
+      {/* Vertical cascading line for subs */}
+      <div className="w-px h-6 bg-white/5"></div>
+      
+      <div className="space-y-1 w-full">
+        {subs.map((sub, i) => (
+          <React.Fragment key={i}>
+             <div className="flex flex-col items-center">
+                <div className={`px-3 py-2 glass rounded-lg border border-white/5 w-full text-center hover:bg-white/[0.02] transition-colors`}>
+                  <p className="text-[8px] font-bold text-neutral-400 uppercase tracking-tighter">{sub}</p>
+                </div>
+                {i < subs.length - 1 && <div className="w-px h-2 bg-white/5"></div>}
+             </div>
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 };
