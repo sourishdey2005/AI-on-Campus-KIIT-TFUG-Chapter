@@ -4,6 +4,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Architecture from './components/Architecture';
+import DomainMap from './components/DomainMap';
+import ModelVisualizer from './components/ModelVisualizer';
 import Footer from './components/Footer';
 import { ACTIVITIES, ORG_CHART } from './constants';
 
@@ -19,6 +21,12 @@ const App: React.FC = () => {
         <div id="about">
           <About />
         </div>
+
+        {/* Neural Knowledge Graph Section */}
+        <DomainMap />
+
+        {/* Model Architecture Visualizer */}
+        <ModelVisualizer />
 
         {/* Intelligence Architecture Section (Clusters) */}
         <Architecture />

@@ -65,20 +65,47 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #333;
         }
+
+        /* D3 Graph Styles */
+        .node circle {
+            cursor: pointer;
+            stroke-width: 2px;
+            transition: r 0.3s ease, stroke-width 0.3s ease;
+        }
+        .node text {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            pointer-events: none;
+            fill: #888;
+            transition: fill 0.3s ease;
+        }
+        .link {
+            stroke-opacity: 0.2;
+            stroke-width: 1.5px;
+            transition: stroke-opacity 0.3s ease;
+        }
+        .node:hover text {
+            fill: #fff;
+        }
+        .node:hover circle {
+            stroke-width: 4px;
+        }
     </style>
 <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "d3": "https://esm.sh/d3@7"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
-    <!-- Explicitly loading index.tsx as the module entry point -->
     <script type="module" src="index.tsx"></script>
 </body>
 </html>
