@@ -73,12 +73,12 @@ const InstitutionalEndorsement: React.FC = () => {
         </div>
         
         {/* Footer Institutional Logos Strip */}
-        <div className="mt-16 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-20 hover:opacity-40 transition-opacity grayscale duration-500">
-           <span className="text-sm md:text-lg font-black tracking-tighter uppercase">TensorFlow</span>
+        <div className="mt-16 flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-20 hover:opacity-60 transition-all grayscale duration-500">
+           <a href="https://www.tensorflow.org" target="_blank" rel="noopener noreferrer" className="text-sm md:text-lg font-black tracking-tighter uppercase hover:text-orange-500 transition-colors">TensorFlow</a>
            <div className="w-px h-6 bg-white/20"></div>
-           <span className="text-sm md:text-lg font-black tracking-tighter uppercase">KIIT University</span>
+           <a href="https://kiit.ac.in/" target="_blank" rel="noopener noreferrer" className="text-sm md:text-lg font-black tracking-tighter uppercase hover:text-blue-500 transition-colors">KIIT University</a>
            <div className="w-px h-6 bg-white/20"></div>
-           <span className="text-sm md:text-lg font-black tracking-tighter uppercase">TFUG Global</span>
+           <a href="https://www.tfugbbsr.in/" target="_blank" rel="noopener noreferrer" className="text-sm md:text-lg font-black tracking-tighter uppercase hover:text-orange-500 transition-colors">TFUG Global</a>
         </div>
       </div>
     </section>

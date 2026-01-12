@@ -55,10 +55,24 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
         </div>
         
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI Guild on Campus – KIIT Chapter. All intellectual property remains with the Authorized personals</p>
-          <div className="flex gap-8 text-[10px] tracking-widest uppercase font-bold text-neutral-500">
-            <span className="text-orange-600/50">Powered by TensorFlow Community</span>
-            <span className="text-blue-600/50">KIIT University</span>
+          <p className="text-neutral-600 text-[10px] tracking-widest uppercase text-center md:text-left">© 2026 AI Guild on Campus – KIIT Chapter. All intellectual property remains with the Authorized personals</p>
+          <div className="flex flex-wrap justify-center md:justify-end gap-6 md:gap-8 text-[10px] tracking-widest uppercase font-bold">
+            <a 
+              href="https://www.tfugbbsr.in/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-orange-600/50 hover:text-orange-500 transition-colors"
+            >
+              Powered by TensorFlow Community
+            </a>
+            <a 
+              href="https://kiit.ac.in/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-blue-600/50 hover:text-blue-400 transition-colors"
+            >
+              KIIT University
+            </a>
           </div>
         </div>
       </div>
