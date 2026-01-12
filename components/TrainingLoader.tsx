@@ -56,7 +56,7 @@ const TrainingLoader: React.FC = () => {
                   key={i}
                   className="text-[10px] font-mono text-neutral-500"
                 >
-                  <span className="text-orange-500 mr-2">&gt;&gt;&gt;</span> {log}
+                  <span className="text-orange-500 mr-2">{"\u003E\u003E\u003E"}</span> {log}
                 </motion.p>
               ))}
             </div>
