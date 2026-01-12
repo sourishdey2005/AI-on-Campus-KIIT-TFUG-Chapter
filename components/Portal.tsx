@@ -43,31 +43,32 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
 
   const slideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 500 : -500,
+      x: direction > 0 ? 1000 : -1000,
       opacity: 0,
-      scale: 0.9,
-      rotateY: direction > 0 ? 45 : -45
+      scale: 0.8,
+      filter: 'blur(10px)'
     }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
       scale: 1,
-      rotateY: 0,
+      filter: 'blur(0px)',
       transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1]
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.4 },
+        scale: { duration: 0.4 }
       }
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? 500 : -500,
+      x: direction < 0 ? 1000 : -1000,
       opacity: 0,
-      scale: 0.9,
-      rotateY: direction < 0 ? 45 : -45,
+      scale: 0.8,
+      filter: 'blur(10px)',
       transition: {
-        duration: 0.6,
-        ease: [0.16, 1, 0.3, 1]
+        x: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.4 }
       }
     })
   };
@@ -165,14 +166,18 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
         );
       case 'directory':
         return (
-          <div className="h-full flex flex-col items-center justify-center animate-in fade-in duration-700">
-            <header className="text-center mb-12">
-              <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.5em] mb-2 block">Executive Board</span>
+          <div className="h-full flex flex-col items-center animate-in fade-in duration-700">
+            <header className="text-center mb-8">
+              <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.5em] mb-2 block">Strategic Leadership</span>
               <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Member Directory</h2>
-              <p className="text-neutral-500 text-sm max-w-xl mx-auto">Revolving showcase of the AI Guild's strategic leadership.</p>
+              <p className="text-neutral-500 text-sm max-w-xl mx-auto">Click arrows or swipe to navigate through the executive board.</p>
             </header>
 
-            <div className="relative w-full max-w-4xl h-[600px] flex items-center justify-center perspective-1000">
+            <div className="relative w-full max-w-5xl h-[650px] flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                 <div className="w-[80%] h-full bg-red-600/5 blur-[120px] rounded-full"></div>
+              </div>
+
               <AnimatePresence initial={false} custom={direction}>
                 <motion.div
                   key={memberIndex}
@@ -181,52 +186,73 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="absolute inset-0 flex flex-col items-center justify-center"
+                  className="absolute inset-0 flex items-center justify-center p-4"
                 >
-                  <div className="glass p-12 md:p-16 rounded-[4rem] border-white/10 text-center shadow-2xl relative overflow-hidden w-full max-w-2xl">
-                    <div className="absolute inset-0 bg-gradient-to-b from-red-600/5 to-transparent opacity-50"></div>
-                    
-                    <div className="w-56 h-56 md:w-72 md:h-72 bg-neutral-900 rounded-[3rem] mx-auto mb-10 border-2 border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center relative z-10">
+                  <div className="glass w-full max-w-3xl rounded-[3rem] border-white/10 flex flex-col md:flex-row items-center overflow-hidden shadow-2xl bg-black/40 backdrop-blur-3xl">
+                    {/* Image Section - Completely Visible and Prominent */}
+                    <div className="w-full md:w-1/2 h-72 md:h-[500px] relative overflow-hidden">
                       {members[memberIndex].image ? (
-                        <img src={members[memberIndex].image!} alt={members[memberIndex].name} className="w-full h-full object-cover" />
+                        <img 
+                          src={members[memberIndex].image!} 
+                          alt={members[memberIndex].name} 
+                          className="w-full h-full object-cover object-top" 
+                        />
                       ) : (
-                        <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-6xl text-neutral-700 font-black">?</div>
+                        <div className="w-full h-full bg-neutral-900 flex items-center justify-center text-8xl text-neutral-800 font-black">?</div>
                       )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden"></div>
                     </div>
 
-                    <div className="relative z-10">
-                      <h4 className="text-3xl md:text-4xl font-black text-white tracking-tight">{members[memberIndex].name}</h4>
-                      <p className="text-[12px] font-black text-red-500 uppercase tracking-[0.5em] mt-3">{members[memberIndex].role}</p>
-                      <div className="w-16 h-1 bg-red-500/40 mx-auto my-8"></div>
-                      <p className="text-sm md:text-base text-neutral-400 font-medium leading-relaxed max-w-[400px] mx-auto mb-8">
-                        {members[memberIndex].bio}
+                    {/* Content Section */}
+                    <div className="w-full md:w-1/2 p-10 md:p-14 text-left flex flex-col h-full">
+                      <div className="mb-8">
+                        <span className="text-[10px] font-black text-red-500 uppercase tracking-[0.4em] mb-2 block">{members[memberIndex].role}</span>
+                        <h4 className="text-3xl md:text-4xl font-black text-white tracking-tighter leading-none">{members[memberIndex].name}</h4>
+                      </div>
+                      
+                      <div className="w-12 h-1 bg-red-500 mb-8"></div>
+                      
+                      <p className="text-sm md:text-base text-neutral-300 font-medium leading-relaxed mb-auto italic">
+                        "{members[memberIndex].bio}"
                       </p>
-                      <div className="inline-flex items-center gap-2 px-4 py-2 glass border-white/5 rounded-xl">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
-                        <span className="text-[10px] text-neutral-300 font-black uppercase tracking-widest">{members[memberIndex].cluster}</span>
+
+                      <div className="mt-10 flex items-center justify-between">
+                         <div className="flex flex-col">
+                           <span className="text-[8px] font-black text-neutral-600 uppercase tracking-widest mb-1">Assigned Cluster</span>
+                           <span className="text-xs font-bold text-white uppercase tracking-tight">{members[memberIndex].cluster}</span>
+                         </div>
+                         <div className="w-10 h-10 rounded-full glass border-white/10 flex items-center justify-center text-xs opacity-40">
+                            0{memberIndex + 1}
+                         </div>
                       </div>
                     </div>
                   </div>
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation Controls */}
-              <button 
-                onClick={() => paginate(-1)}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-16 h-16 glass rounded-full flex items-center justify-center text-neutral-500 hover:text-white hover:bg-white/5 border-white/10 transition-all z-20"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
-              </button>
-              <button 
-                onClick={() => paginate(1)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-16 h-16 glass rounded-full flex items-center justify-center text-neutral-500 hover:text-white hover:bg-white/5 border-white/10 transition-all z-20"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
-              </button>
+              {/* Navigation Arrows */}
+              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex justify-between px-2 md:px-8 z-20 pointer-events-none">
+                <motion.button 
+                  whileHover={{ scale: 1.1, x: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => paginate(-1)}
+                  className="w-14 h-14 md:w-16 md:h-16 glass rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-red-600/20 hover:border-red-500/40 border-white/10 transition-all pointer-events-auto shadow-xl"
+                >
+                  <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+                </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.1, x: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => paginate(1)}
+                  className="w-14 h-14 md:w-16 md:h-16 glass rounded-full flex items-center justify-center text-neutral-400 hover:text-white hover:bg-red-600/20 hover:border-red-500/40 border-white/10 transition-all pointer-events-auto shadow-xl"
+                >
+                  <svg className="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+                </motion.button>
+              </div>
             </div>
 
-            {/* Pagination Indicators */}
-            <div className="flex gap-4 mt-8">
+            {/* Progress Indicators */}
+            <div className="flex gap-4 mt-8 pb-4">
               {members.map((_, i) => (
                 <button
                   key={i}
@@ -234,7 +260,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
                     setDirection(i > memberIndex ? 1 : -1);
                     setMemberIndex(i);
                   }}
-                  className={`h-1.5 rounded-full transition-all duration-500 ${i === memberIndex ? 'w-12 bg-red-500' : 'w-4 bg-white/10 hover:bg-white/20'}`}
+                  className={`h-1 rounded-full transition-all duration-500 ${i === memberIndex ? 'w-16 bg-red-600' : 'w-4 bg-white/10 hover:bg-white/30'}`}
                 />
               ))}
             </div>
