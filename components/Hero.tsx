@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
@@ -61,10 +60,10 @@ const Hero: React.FC = () => {
             Official TensorFlow Student Society
           </div>
           
-          <h1 className="text-[clamp(1.5rem,4.5vw,4.5rem)] font-extrabold tracking-tighter mb-8 leading-[1.1] transition-all duration-700 whitespace-nowrap overflow-hidden">
+          <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold tracking-tighter mb-8 leading-[1.05] transition-all duration-700 whitespace-normal">
             AI on <span className="tf-gradient">Campus</span>
             <span className="text-white/40"> — KIIT</span> 
-            <span className="text-white/20 italic font-light ml-2">chapter</span>
+            <span className="text-white/20 italic font-light ml-2 block sm:inline">chapter</span>
           </h1>
           
           <p className="text-lg md:text-xl text-neutral-400 font-light mb-14 leading-relaxed max-w-2xl">
@@ -93,18 +92,18 @@ const Hero: React.FC = () => {
             </motion.button>
           </div>
 
-          <div className="mt-24 flex items-center gap-16 border-t border-white/5 pt-14 max-w-2xl">
-            <div className="group cursor-default">
-              <p className="text-3xl font-bold text-white group-hover:text-orange-500 transition-colors">500+</p>
-              <p className="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Active Minds</p>
+          <div className="mt-24 flex items-center gap-8 md:gap-16 border-t border-white/5 pt-14 max-w-2xl overflow-x-auto no-scrollbar">
+            <div className="group cursor-default shrink-0">
+              <p className="text-2xl md:text-3xl font-bold text-white group-hover:text-orange-500 transition-colors">500+</p>
+              <p className="text-[9px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Active Minds</p>
             </div>
-            <div className="group cursor-default">
-              <p className="text-3xl font-bold text-white group-hover:text-blue-500 transition-colors">12+</p>
-              <p className="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Published Papers</p>
+            <div className="group cursor-default shrink-0">
+              <p className="text-2xl md:text-3xl font-bold text-white group-hover:text-blue-500 transition-colors">12+</p>
+              <p className="text-[9px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Published Papers</p>
             </div>
-            <div className="group cursor-default">
-              <p className="text-3xl font-bold text-white group-hover:text-green-500 transition-colors">TFUG</p>
-              <p className="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Affiliated Hub</p>
+            <div className="group cursor-default shrink-0">
+              <p className="text-2xl md:text-3xl font-bold text-white group-hover:text-green-500 transition-colors">TFUG</p>
+              <p className="text-[9px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Affiliated Hub</p>
             </div>
           </div>
         </motion.div>
@@ -214,6 +213,13 @@ print("SYS_READY_0x7F")`}</code>
         }
         .animate-ingest-point {
           animation: ingest-point 2s linear infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
         }
       `}</style>
     </section>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -51,7 +50,7 @@ const CommunityTrustVisualizer: React.FC = () => {
                   <path d="M100,150 Q200,100 300,150 T500,150" fill="none" stroke="white" strokeWidth="1" />
                   <circle cx="150" cy="120" r="2" fill="white" />
                   <circle cx="450" cy="100" r="2" fill="white" />
-                </circle>
+                </svg>
               </div>
               
               {/* Connection Lines */}

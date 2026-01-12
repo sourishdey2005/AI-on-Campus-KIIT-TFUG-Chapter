@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
@@ -44,10 +43,11 @@ const NeuralScroll: React.FC = () => {
   const connections = getConnections();
 
   return (
-    <section ref={containerRef} className="h-[250vh] relative bg-[#050505] border-t border-white/5">
+    <section ref={containerRef} className="h-[300vh] relative bg-[#050505] border-t border-white/5">
       <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden px-6">
         
-        <div className="absolute top-20 text-center max-w-xl z-20">
+        {/* Header Content - Managed vertical height to prevent overlapping */}
+        <div className="w-full text-center max-w-2xl z-20 mb-12 flex flex-col items-center shrink-0">
           <motion.h2 
             style={{ opacity: useTransform(smoothProgress, [0, 0.1, 0.8, 1], [0, 1, 1, 0]) }}
             className="text-[10px] uppercase tracking-[0.6em] text-orange-500 font-black mb-4"
@@ -59,20 +59,21 @@ const NeuralScroll: React.FC = () => {
               opacity: useTransform(smoothProgress, [0, 0.15, 0.75, 1], [0, 1, 1, 0]),
               y: useTransform(smoothProgress, [0, 0.2], [20, 0])
             }}
-            className="text-4xl md:text-6xl font-black tracking-tighter"
+            className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter"
           >
             Inside the <span className="tf-gradient">Architecture</span>
           </motion.h3>
           <motion.p 
             style={{ opacity: useTransform(smoothProgress, [0.2, 0.3, 0.7, 0.9], [0, 1, 1, 0]) }}
-            className="text-neutral-500 mt-6 font-light leading-relaxed"
+            className="text-neutral-500 mt-4 font-light leading-relaxed max-w-lg text-sm md:text-base"
           >
             Observe how signals propagate through a deep neural network, triggering non-linear activations layer-by-layer as the forward pass executes.
           </motion.p>
         </div>
 
-        <div className="relative w-full max-w-5xl h-[500px] mt-24">
-          <svg className="w-full h-full overflow-visible" viewBox="0 0 1000 500">
+        {/* SVG Container - Responsive height constraints */}
+        <div className="relative w-full max-w-5xl h-[300px] md:h-[400px] lg:h-[500px] flex-1 min-h-0">
+          <svg className="w-full h-full overflow-visible" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
             {/* Synapse Connections */}
             {connections.map((conn) => {
               const startX = (conn.layerIndex * 333) + 100;
@@ -99,7 +100,6 @@ const NeuralScroll: React.FC = () => {
 
             {/* Firing Signal Particles */}
             {connections.map((conn, idx) => {
-              // Only create particles for a subset to avoid performance issues
               if (idx % 4 !== 0) return null;
               
               const startX = (conn.layerIndex * 333) + 100;
@@ -107,7 +107,6 @@ const NeuralScroll: React.FC = () => {
               const startY = (500 / (layers[conn.layerIndex].count + 1)) * (conn.start + 1);
               const endY = (500 / (layers[conn.layerIndex + 1].count + 1)) * (conn.end + 1);
 
-              // We want this particle to move across the line as we scroll through its layer's range
               const startRange = (conn.layerIndex / (layers.length - 1)) * 0.7;
               const endRange = startRange + 0.2;
               
@@ -136,7 +135,6 @@ const NeuralScroll: React.FC = () => {
                   const y = (500 / (layer.count + 1)) * (nIdx + 1);
                   
                   const activationThreshold = (lIdx / (layers.length - 1)) * 0.7;
-                  const glow = useTransform(smoothProgress, [activationThreshold - 0.1, activationThreshold, activationThreshold + 0.1], ["0px 0px 0px rgba(255,111,0,0)", "0px 0px 30px rgba(255,111,0,0.8)", "0px 0px 10px rgba(255,111,0,0.3)"]);
                   const scale = useTransform(smoothProgress, [activationThreshold - 0.05, activationThreshold, activationThreshold + 0.05], [1, 1.4, 1.1]);
                   const fillColor = useTransform(smoothProgress, [activationThreshold - 0.1, activationThreshold], ["#111", layer.color]);
 
@@ -160,19 +158,19 @@ const NeuralScroll: React.FC = () => {
             ))}
           </svg>
 
-          {/* Layer Labels */}
-          <div className="absolute top-full mt-10 w-full flex justify-between px-10">
+          {/* Layer Labels - Relative to SVG container now */}
+          <div className="absolute top-full left-0 right-0 pt-8 flex justify-between px-4 sm:px-10">
             {layers.map((layer, idx) => (
               <div key={layer.id} className="text-center">
                 <motion.p 
                   style={{ opacity: useTransform(smoothProgress, [(idx/(layers.length-1)) * 0.7 - 0.1, (idx/(layers.length-1)) * 0.7], [0.2, 1]) }}
-                  className="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500 mb-1"
+                  className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-neutral-500 mb-1"
                 >
                   {layer.id}
                 </motion.p>
                 <motion.p 
                   style={{ opacity: useTransform(smoothProgress, [(idx/(layers.length-1)) * 0.7 - 0.1, (idx/(layers.length-1)) * 0.7], [0.3, 1]) }}
-                  className="text-xs font-bold text-white whitespace-nowrap"
+                  className="text-[9px] sm:text-xs font-bold text-white whitespace-nowrap"
                 >
                   {layer.label}
                 </motion.p>
@@ -181,27 +179,27 @@ const NeuralScroll: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Metrics Overlay */}
+        {/* Floating Metrics Overlay - Hidden on small screens to prevent collisions */}
         <motion.div 
           style={{ opacity: useTransform(smoothProgress, [0.3, 0.4, 0.8, 0.9], [0, 1, 1, 0]) }}
-          className="absolute right-10 bottom-20 glass p-6 rounded-2xl border-white/10 hidden lg:block"
+          className="absolute right-6 bottom-10 lg:right-10 lg:bottom-20 glass p-4 lg:p-6 rounded-2xl border-white/10 hidden md:block"
         >
           <div className="space-y-4">
             <div>
               <p className="text-[9px] font-black text-neutral-500 uppercase tracking-widest mb-1">Compute Load</p>
-              <motion.p className="text-lg font-mono font-bold text-orange-500">
+              <motion.p className="text-sm lg:text-lg font-mono font-bold text-orange-500">
                 {useTransform(smoothProgress, [0, 1], ["0.2 TFLOPS", "14.8 TFLOPS"])}
               </motion.p>
             </div>
             <div>
               <p className="text-[9px] font-black text-neutral-500 uppercase tracking-widest mb-1">Loss Gradient</p>
-              <motion.p className="text-lg font-mono font-bold text-blue-500">
+              <motion.p className="text-sm lg:text-lg font-mono font-bold text-blue-500">
                  {useTransform(smoothProgress, [0, 1], ["0.8921", "0.0012"])}
               </motion.p>
             </div>
             <div className="pt-4 border-t border-white/5 flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-[8px] font-black text-green-500 uppercase tracking-[0.2em]">Forward Pass Active</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+              <span className="text-[8px] font-black text-green-500 uppercase tracking-[0.2em]">Active</span>
             </div>
           </div>
         </motion.div>
