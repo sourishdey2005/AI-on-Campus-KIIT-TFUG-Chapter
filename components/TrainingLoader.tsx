@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -57,7 +56,7 @@ const TrainingLoader: React.FC = () => {
                   key={i}
                   className="text-[10px] font-mono text-neutral-500"
                 >
-                  <span className="text-orange-500 mr-2">>>></span> {log}
+                  <span className="text-orange-500 mr-2">{" >>> "}</span> {log}
                 </motion.p>
               ))}
             </div>
