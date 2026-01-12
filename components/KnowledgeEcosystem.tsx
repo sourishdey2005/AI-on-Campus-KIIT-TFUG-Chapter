@@ -9,7 +9,7 @@ const KnowledgeEcosystem: React.FC = () => {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section id="knowledge-ecosystem" className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-start justify-between mb-20 gap-8">
           <div className="max-w-xl">
@@ -21,7 +21,7 @@ const KnowledgeEcosystem: React.FC = () => {
           </div>
           
           <div className="flex gap-4">
-             <button className="px-8 py-4 glass border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-500/10 transition-all">Internal Wiki</button>
+             <button onClick={() => alert('Redirecting to Internal Documentation Wiki...')} className="px-8 py-4 glass border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-500/10 transition-all">Internal Wiki</button>
           </div>
         </div>
 

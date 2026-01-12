@@ -8,7 +8,7 @@ const ResearchRigor: React.FC = () => {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section id="research-rigor" className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           

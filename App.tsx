@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -14,52 +14,46 @@ import ResearchRigor from './components/ResearchRigor';
 import Governance from './components/Governance';
 import Benefits from './components/Benefits';
 import Footer from './components/Footer';
+import Portal from './components/Portal';
 import { ACTIVITIES, ORG_CHART } from './constants';
 
 const App: React.FC = () => {
+  const [activePortal, setActivePortal] = useState<string | null>(null);
+
+  const openPortal = (view: string) => setActivePortal(view);
+  const closePortal = () => setActivePortal(null);
+
   return (
     <div className="bg-[#050505] min-h-screen text-white selection:bg-orange-600 selection:text-white">
-      <Navbar />
+      <Navbar onOpenPortal={openPortal} />
       
       <main>
         <Hero />
         
-        {/* About TensorFlow Section */}
         <div id="about">
           <About />
         </div>
 
-        {/* Neural Knowledge Graph Section */}
         <DomainMap />
 
-        {/* Model Architecture Visualizer */}
         <ModelVisualizer />
 
-        {/* Inside a Neural Network Scroll Animation */}
         <NeuralScroll />
 
-        {/* Intelligence Architecture Section (Clusters) */}
         <Architecture />
 
-        {/* Knowledge Base & Academic Stack */}
         <KnowledgeEcosystem />
 
-        {/* Operating Model & Member Journey */}
         <OperatingModel />
 
-        {/* Research Rigor & Failure Wall */}
         <ResearchRigor />
 
-        {/* Career Growth & Roadmap */}
         <CareerAccelerator />
 
-        {/* Ethics & Governance Framework */}
         <Governance />
 
-        {/* Expected Benefits Section */}
         <Benefits />
 
-        {/* Activity Ecosystem */}
         <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
           <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-orange-600/5 blur-[120px] rounded-full -translate-x-1/2"></div>
           <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -72,7 +66,7 @@ const App: React.FC = () => {
                 </p>
               </div>
               <button 
-                onClick={() => alert('Loading society calendar...')}
+                onClick={() => openPortal('calendar')}
                 className="px-8 py-4 glass border-white/10 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-3"
               >
                 Society Calendar
@@ -96,7 +90,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Membership & Selection Strategy */}
         <section id="governance" className="py-32 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/5 blur-[180px] rounded-full -mr-40 -mt-40 animate-pulse-soft"></div>
           <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -126,7 +119,7 @@ const App: React.FC = () => {
                 </div>
                 
                 <button 
-                  onClick={() => alert('Registration opening soon for the Winter 2024 cohort.')}
+                  onClick={() => openPortal('recruitment')}
                   className="mt-14 px-10 py-5 bg-blue-600/20 backdrop-blur-xl border border-blue-500/40 text-white rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-blue-600 hover:shadow-[0_0_40px_rgba(37,99,235,0.2)] transition-all flex items-center gap-3 group"
                 >
                   Apply for Winter Intake
@@ -157,7 +150,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Organizational Hierarchy Visualization */}
         <section className="py-32 bg-[#050505] border-t border-white/5">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-500 font-black mb-20">Structural Hierarchy</h2>
@@ -175,7 +167,6 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* Faculty Support Section */}
         <section className="py-40 bg-gradient-to-b from-transparent to-[#0a0a0a] relative">
           <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 className="text-xs uppercase tracking-[0.4em] text-neutral-500 font-black mb-16">Institutional Credibility</h2>
@@ -198,7 +189,11 @@ const App: React.FC = () => {
         </section>
       </main>
 
-      <Footer />
+      <Footer onOpenPortal={openPortal} />
+
+      {activePortal && (
+        <Portal view={activePortal} onClose={closePortal} />
+      )}
     </div>
   );
 };
