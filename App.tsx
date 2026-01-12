@@ -210,9 +210,16 @@ const App: React.FC = () => {
                   className="flex flex-col items-center relative group"
                 >
                   {idx !== 0 && <div className="w-px h-10 bg-gradient-to-b from-white/20 to-transparent mb-4 group-hover:h-12 transition-all"></div>}
-                  <div className="px-12 py-6 glass rounded-2xl border-white/10 transition-all duration-500 hover:border-orange-500/50 min-w-[320px] group-hover:shadow-[0_0_30px_rgba(255,111,0,0.1)]">
-                    <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.3em] mb-2">{member.role}</p>
-                    <h5 className="text-xl font-black text-white tracking-tight">{member.name}</h5>
+                  <div className="px-12 py-6 glass rounded-2xl border-white/10 transition-all duration-500 hover:border-orange-500/50 min-w-[320px] group-hover:shadow-[0_0_30px_rgba(255,111,0,0.1)] flex items-center gap-6">
+                    {member.image && (
+                      <div className="w-14 h-14 rounded-full overflow-hidden border border-white/10 shrink-0 shadow-lg">
+                        <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                    <div className="text-left">
+                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.3em] mb-2">{member.role}</p>
+                      <h5 className="text-xl font-black text-white tracking-tight">{member.name}</h5>
+                    </div>
                   </div>
                 </motion.div>
               ))}

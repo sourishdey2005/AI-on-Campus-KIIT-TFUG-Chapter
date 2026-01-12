@@ -24,4 +24,5 @@ export interface TeamMember {
   role: string;
   name: string;
   level: number;
+  image?: string;
 }

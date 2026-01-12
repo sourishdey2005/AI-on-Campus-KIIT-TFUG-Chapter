@@ -102,12 +102,18 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight' },
-                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy' },
+                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
                 { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy' },
                 { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy' }
               ].map((m, i) => (
                 <div key={i} className="glass p-8 rounded-3xl border-white/5 text-center group hover:border-red-500/30 transition-all">
-                  <div className="w-20 h-20 bg-neutral-900 rounded-full mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform"></div>
+                  <div className="w-20 h-20 bg-neutral-900 rounded-full mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform overflow-hidden flex items-center justify-center">
+                    {m.image ? (
+                      <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-xs text-neutral-600">👤</div>
+                    )}
+                  </div>
                   <h4 className="font-bold text-white">{m.name}</h4>
                   <p className="text-[10px] font-black text-red-500 uppercase tracking-widest mt-1">{m.role}</p>
                   <p className="text-xs text-neutral-500 mt-4">{m.cluster}</p>
