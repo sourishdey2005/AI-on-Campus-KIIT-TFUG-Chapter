@@ -10,11 +10,11 @@ export const CLUSTERS: Cluster[] = [
     description: 'Specialized lab for Large Language Models, Multi-modal systems, and Agentic frameworks.',
     color: 'from-violet-600/30 to-fuchsia-600/30',
     domains: [
-      { name: 'Large Language Models (LLMs)', details: 'Mastering fine-tuning, quantization (QLoRA), and model distillation.' },
-      { name: 'Retrieval-Augmented Generation (RAG)', details: 'Vector databases, semantic search, and context window optimization.' },
-      { name: 'Multi-modal Foundation Models', details: 'Architectures combining vision, audio, and text (e.g., Gemini-class systems).' },
-      { name: 'Agentic AI & Tool Use', details: 'Building autonomous agents using LangChain, CrewAI, and function calling.' },
-      { name: 'Diffusion & Creative Synthesis', details: 'Latent diffusion models, LoRA training, and controlled image/video generation.' }
+      { name: 'Large Language Models (LLMs)', details: 'Mastering PEFT, QLoRA, and full-parameter fine-tuning of open-weights models like Gemma 2 and Llama 3 for domain-specific tasks.' },
+      { name: 'Retrieval-Augmented Generation (RAG)', details: 'Architecting multi-stage retrieval pipelines with semantic rerankers, hybrid search (BM25 + Vector), and graph-based memory storage.' },
+      { name: 'Multi-modal Foundation Models', details: 'Developing unified encoders for visual-language grounding (VLM) and cross-modal reasoning using CLIP and PaLI-style architectures.' },
+      { name: 'Agentic AI & Tool Use', details: 'Building autonomous ReAct agents capable of complex tool-use, multi-step reasoning, and self-correction via reinforcement learning feedback loops.' },
+      { name: 'Diffusion & Creative Synthesis', details: 'Training LoRA adapters for Stable Diffusion and exploring temporal consistency in latent video-generation models like SVD and AnimateDiff.' }
     ]
   },
   {
@@ -24,11 +24,11 @@ export const CLUSTERS: Cluster[] = [
     description: 'The "R&D" wing focusing on heavy lifting of model architecture and core intelligence.',
     color: 'from-orange-500/20 to-amber-500/20',
     domains: [
-      { name: 'Computer Vision & Visual Perception (CVVP)', details: 'CNNs, Vision Transformers (ViTs), and real-time segmentation.' },
-      { name: 'Generative Vision & Image Processing (GVIP)', details: 'GANs, Autoencoders, and Image-to-Image translation.' },
-      { name: 'Neural Language Architectures (NLA)', details: 'RNNs, LSTMs, and evolution of multi-head attention mechanisms.' },
-      { name: 'Reinforcement Learning & Game Theory (RLGT)', details: 'Policy gradients, Q-learning, and robotics simulation.' },
-      { name: 'Optimization & Meta-Learning', details: 'Custom loss functions, hyper-parameter search, and learning-to-learn.' }
+      { name: 'Computer Vision & Visual Perception', details: 'Real-time visual perception using YOLOv10 and Vision Transformers (ViT) for zero-shot object detection and Segment Anything (SAM) integration.' },
+      { name: 'Generative Vision & Neural Rendering', details: 'High-fidelity neural rendering, NeRFs (Neural Radiance Fields), and GAN-based super-resolution for satellite and medical imagery enhancement.' },
+      { name: 'Neural Language Architectures', details: 'Researching long-context sequence modeling using State-Space Models (SSM/Mamba) and advanced sparsity techniques in attention mechanisms.' },
+      { name: 'Reinforcement Learning & Simulation', details: 'Training agents in high-fidelity simulations for robotics (MuJoCo) and multi-agent competitive environments using PPO and Soft Actor-Critic (SAC).' },
+      { name: 'Optimization & Neural Search', details: 'Developing custom training loops with advanced gradient surgery, weight pruning, and automated Neural Architecture Search (NAS) for efficiency.' }
     ]
   },
   {
@@ -38,10 +38,10 @@ export const CLUSTERS: Cluster[] = [
     description: 'The "Foundation" focusing on the data lifecycle that feeds the models.',
     color: 'from-blue-500/20 to-cyan-500/20',
     domains: [
-      { name: 'Big Data Engineering (BDE)', details: 'Scalable pipelines, data warehousing, and tf.data optimization.' },
-      { name: 'Statistical Analysis & Inference (SAI)', details: 'Hypothesis testing, Bayesian inference, and probability distributions.' },
-      { name: 'Bio-Informatics & Scientific Computing (BISC)', details: 'AI for protein folding, genomic data, and healthcare diagnostics.' },
-      { name: 'Geo-Spatial & Environmental Analytics (GEA)', details: 'AQI prediction, satellite imagery, and climate modeling.' }
+      { name: 'Big Data Engineering', details: 'Orchestrating petabyte-scale data pipelines using tf.data, Apache Spark, and Google Cloud Dataflow for training-ready feature stores.' },
+      { name: 'Statistical Inference & Causality', details: 'Implementing Bayesian neural networks for uncertainty estimation and exploring Causal Inference to distinguish correlation from causation in complex datasets.' },
+      { name: 'Bio-Informatics & AI for Science', details: 'Leveraging ML for genomic sequencing, drug discovery, and medical diagnostic systems based on 3D protein structure prediction and folding.' },
+      { name: 'Geo-Spatial & Climate Analytics', details: 'Analyzing multi-spectral satellite data for carbon footprint tracking and time-series forecasting of local environmental anomalies and disasters.' }
     ]
   },
   {
@@ -51,10 +51,10 @@ export const CLUSTERS: Cluster[] = [
     description: 'Turning models into functional, user-facing full-stack AI software.',
     color: 'from-green-500/20 to-emerald-500/20',
     domains: [
-      { name: 'Web-ML & Browser Intelligence', details: 'TensorFlow.js in high-performance React/Next.js environments.' },
-      { name: 'Mobile AI & Intelligent Apps', details: 'TF Lite for on-device inference in Flutter/Android/iOS.' },
-      { name: 'Voice & Conversational UI (VCUI)', details: 'Speech-to-text, text-to-speech, and low-latency voice assistants.' },
-      { name: 'XR & Spatial Computing', details: 'Integrating AI with Unity/Unreal for immersive AR/VR experiences.' }
+      { name: 'Web-ML & Browser Intelligence', details: 'Deploying high-performance models in-browser using TF.js with WebGL/WebGPU acceleration for privacy-centric edge intelligence and real-time interaction.' },
+      { name: 'Mobile AI & Efficient Computing', details: 'Optimizing on-device inference via Quantization-Aware Training (QAT) and hardware-specific pruning for TF Lite on mobile NPUs and TPUs.' },
+      { name: 'Voice & Conversational UI', details: 'Building end-to-end low-latency conversational agents with streaming ASR (Automatic Speech Recognition) and emotive, high-fidelity TTS (Text-to-Speech).' },
+      { name: 'XR & Spatial Computing', details: 'Integrating spatial AI for real-time hand-tracking, occlusion mapping, and semantic scene understanding in immersive AR/VR environments.' }
     ]
   },
   {
@@ -64,10 +64,10 @@ export const CLUSTERS: Cluster[] = [
     description: 'The "SRE Wing" focusing on production, hardware scaling, and security.',
     color: 'from-purple-500/20 to-pink-500/20',
     domains: [
-      { name: 'MLOps & Production Pipelines', details: 'CI/CD, model versioning, and automated retraining loops.' },
-      { name: 'Cloud Infrastructure & Serverless AI', details: 'Scaling on GCP/AWS using Kubernetes and Docker orchestration.' },
-      { name: 'Edge AI & Embedded Systems', details: 'AI on Drones, Raspberry Pi, and NVIDIA Jetson Nano hardware.' },
-      { name: 'AI Security & Zero Trust', details: 'Adversarial attacks, robustification, and sensitive data privacy.' }
+      { name: 'MLOps & CI/CD Pipelines', details: 'Automating the ML lifecycle with TFX (TensorFlow Extended), model monitoring for feature drift, and implementing blue-green deployment strategies.' },
+      { name: 'Cloud Infrastructure & Scaling', details: 'Scaling distributed training and inference on Kubernetes (GKE) using KServe and serverless GPU architectures like Cloud Run and Vertex AI.' },
+      { name: 'Edge AI & TinyML Systems', details: 'Deploying compressed models on resource-constrained hardware like ESP32, Coral TPU, and NVIDIA Jetson Nano for real-world IoT sensing.' },
+      { name: 'AI Security & Robustness', details: 'Hardening models against adversarial attacks, prompt injection, and implementing differential privacy for sensitive dataset protection during training.' }
     ]
   },
   {
@@ -77,12 +77,12 @@ export const CLUSTERS: Cluster[] = [
     description: 'The strategic backbone managing branding, talent, and organizational fluid dynamics.',
     color: 'from-yellow-400/20 to-orange-500/20',
     domains: [
-      { name: 'Operations & Logistics', details: 'End-to-end event management, venue coordination, and scheduling.' },
-      { name: 'Marketing & Technical Branding', details: 'Managing social presence, campaigns, and high-impact outreach.' },
-      { name: 'Photography & Visual Media', details: 'Capturing moments and creating visual artifacts of technical milestones.' },
-      { name: 'Videography & Motion Graphics', details: 'Producing tech reels, documentaries, and animated explainers.' },
-      { name: 'HR & Talent Management', details: 'Selection process, member engagement, and internal culture.' },
-      { name: 'PR & Corporate Relations', details: 'Liaising with industry partners and TFUG global mentors.' }
+      { name: 'Operations & Logistics', details: 'Managing end-to-end society logistics, including technical symposiums, lab inventory, and member scheduling.' },
+      { name: 'Marketing & Technical Branding', details: 'Crafting the society’s identity through high-impact technical outreach, social presence, and community engagement campaigns.' },
+      { name: 'Photography & Visual Media', details: 'Documenting technical milestones and research showcases through professional photography and digital asset management.' },
+      { name: 'Videography & Motion Graphics', details: 'Producing cinematic tech reels, research documentaries, and complex animated explainers for neural architectures.' },
+      { name: 'HR & Talent Management', details: 'Orchestrating the multi-stage recruitment process, member evaluation frameworks, and fostering internal guild culture.' },
+      { name: 'PR & Corporate Relations', details: 'Establishing strategic partnerships with industry leaders and maintaining active liaison with the global TensorFlow community.' }
     ]
   },
   {
@@ -92,21 +92,21 @@ export const CLUSTERS: Cluster[] = [
     description: 'Managing the strategic, legal, and ethical side of technical leadership.',
     color: 'from-red-500/20 to-orange-500/20',
     domains: [
-      { name: 'IPR, Patents & Research Publication', details: 'Documenting inventions for international journals and patents.' },
-      { name: 'AI Ethics, Policy & Fairness', details: 'Ensuring models are unbiased, transparent, and responsible.' },
-      { name: 'Product Management & UX for AI', details: 'User Experience and Strategy for seamless AI interactions.' }
+      { name: 'IPR, Patents & Publications', details: 'Navigating the intellectual property landscape to document student inventions for international journals, conferences, and patent filings.' },
+      { name: 'AI Ethics, Policy & Fairness', details: 'Drafting internal guidelines to ensure models are unbiased, transparent, and ethically aligned with global responsible AI standards.' },
+      { name: 'Product Management for AI', details: 'Applying agile PM methodologies to AI development, focusing on user-centric design and product-market fit for lab innovations.' }
     ]
   },
   {
     id: 'growth',
     title: 'Growth & Community Cluster',
     icon: '🌍',
-    description: 'The face of TF LAB to the global TensorFlow and industry ecosystem.',
+    description: 'The face of the guild to the global TensorFlow and industry ecosystem.',
     color: 'from-indigo-500/20 to-violet-500/20',
     domains: [
-      { name: 'TFUG Global & Industry Liaison', details: 'Connecting KIIT with global Google Developers and TFUG chapters.' },
-      { name: 'Technical Branding & Content', details: 'High-quality blogs, documentation, and technical reels.' },
-      { name: 'Competitive AI & Hackathons', details: 'Kaggle-style competitions and internal research sprints.' }
+      { name: 'TFUG Global Liaison', details: 'Managing relations with Google Developers and TFUG chapters worldwide to bring global opportunities to the KIIT campus.' },
+      { name: 'Technical Branding & Content', details: 'Curating high-quality technical blogs, whitepapers, and documentation to establish the guild as a thought leader in ML.' },
+      { name: 'Competitive AI & Sprints', details: 'Organizing Kaggle-style data competitions and rapid research sprints to gamify skill acquisition within the member base.' }
     ]
   }
 ];

@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
         </div>
         
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI Guild on Campus KIIT. All intellectual property remains with the Authorized personals</p>
+          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI Guild on Campus – KIIT Chapter. All intellectual property remains with the Authorized personals</p>
           <div className="flex gap-8 text-[10px] tracking-widest uppercase font-bold text-neutral-500">
             <span className="text-orange-600/50">Powered by TensorFlow Community</span>
             <span className="text-blue-600/50">KIIT University</span>

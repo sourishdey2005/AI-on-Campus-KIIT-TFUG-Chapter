@@ -78,7 +78,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
                <div className="lg:col-span-2 glass p-10 rounded-[3rem] border-white/5">
                   <h3 className="text-2xl font-black mb-6">Introduction to the Ecosystem</h3>
                   <div className="prose prose-invert max-w-none text-neutral-400 space-y-4 text-sm leading-relaxed">
-                    <p>Welcome to the official AI Guild on Campus – KIIT TFUG internal knowledge base. This wiki is maintained by the Technical Lead wing to ensure seamless knowledge transfer between student cohorts.</p>
+                    <p>Welcome to the official AI Guild on Campus – KIIT Chapter internal knowledge base. This wiki is maintained by the Technical Lead wing to ensure seamless knowledge transfer between student cohorts.</p>
                     <p>Each domain cluster maintains its own sub-directory containing:
                       <ul className="list-disc pl-5 mt-2 space-y-1">
                         <li>Architecture blueprints for core cluster projects.</li>

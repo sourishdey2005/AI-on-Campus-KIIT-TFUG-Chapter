@@ -80,7 +80,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
           
           <h1 className="text-[clamp(2rem,8vw,5.5rem)] font-extrabold tracking-tighter mb-6 md:mb-8 leading-[1] transition-all duration-700 whitespace-normal max-w-5xl">
             AI Guild on <span className="tf-gradient">Campus</span>
-            <span className="text-white/40"> — KIIT</span> 
+            <span className="text-white/40"> — KIIT Chapter</span> 
           </h1>
           
           <p className="text-base md:text-xl lg:text-2xl text-neutral-400 font-light mb-10 md:mb-16 leading-relaxed max-w-3xl mx-auto px-4">

@@ -55,7 +55,7 @@ const InstitutionalEndorsement: React.FC = () => {
                   className="text-2xl md:text-4xl lg:text-5xl font-extralight text-neutral-100 italic leading-[1.3] tracking-tight max-w-4xl"
                 >
                   "We are bridging the void between <span className="text-white font-normal underline decoration-orange-500/30 underline-offset-8">academic ambition</span> and industrial AI leadership. 
-                  <span className="text-white font-normal"> AI on Campus – KIIT TFUG</span> is where theoretical curiosities become <span className="text-orange-500 font-semibold italic">production-grade realities</span>."
+                  <span className="text-white font-normal"> AI Guild on Campus – KIIT Chapter</span> is where theoretical curiosities become <span className="text-orange-500 font-semibold italic">production-grade realities</span>."
                 </motion.p>
                 
                 <div className="mt-10 md:mt-12 flex items-center gap-6 opacity-40">
