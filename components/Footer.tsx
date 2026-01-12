@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface FooterProps {
@@ -6,13 +5,17 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768209453/AI_on_campus_1_tjyhw8.jpg";
+
   return (
     <footer className="py-20 bg-black border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-orange-600 rounded flex items-center justify-center font-bold text-white">TF</div>
+              <div className="w-10 h-10 bg-orange-600 rounded flex items-center justify-center overflow-hidden">
+                <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-cover" />
+              </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight">AI on Campus</h1>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">KIIT Chapter</p>

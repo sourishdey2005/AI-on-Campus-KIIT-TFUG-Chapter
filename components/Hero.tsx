@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
-const Hero: React.FC = () => {
-  const scrollToJoin = () => document.getElementById('governance')?.scrollIntoView({ behavior: 'smooth' });
+interface HeroProps {
+  onOpenPortal?: (view: string) => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
   const scrollToArchitecture = () => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
   const shouldReduceMotion = useReducedMotion();
 
@@ -74,12 +77,12 @@ const Hero: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-5">
             <motion.button 
-              onClick={scrollToJoin}
+              onClick={() => onOpenPortal?.('recruitment')}
               whileHover={{ scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="px-10 py-5 bg-orange-600/20 backdrop-blur-xl border border-orange-500/40 text-white rounded-xl font-bold hover:bg-orange-600 hover:shadow-[0_0_40px_rgba(255,111,0,0.3)] transition-all flex items-center justify-center gap-3 group"
             >
-              Join TF LAB
+              Join AI on Campus
               <svg className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </motion.button>
             <motion.button 
@@ -151,7 +154,7 @@ class NeuralCore(tf.Module):
   def __call__(self, x):
     return tf.nn.relu(self.dense(x))
 
-# TF LAB Intelligence Hub
+# AI on Campus – KIIT TFUG Intelligence Hub
 hub = NeuralCore()
 print("SYS_READY_0x7F")`}</code>
             </pre>

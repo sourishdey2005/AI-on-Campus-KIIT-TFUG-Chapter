@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { CLUSTERS } from '../constants';
 import { Cluster } from '../types';
@@ -13,7 +12,7 @@ const Architecture: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24">
           <h2 className="text-xs uppercase tracking-[0.4em] text-orange-500 font-black mb-6">Research Infrastructure</h2>
-          <h3 className="text-5xl md:text-6xl font-extrabold tracking-tighter">TF LAB Architecture</h3>
+          <h3 className="text-5xl md:text-6xl font-extrabold tracking-tighter">AI on Campus – KIIT TFUG Architecture</h3>
           <p className="text-neutral-500 mt-8 max-w-2xl mx-auto text-xl font-light leading-relaxed">
             Engineered into specialized research clusters, each acting as a sovereign laboratory for ML disruption.
           </p>

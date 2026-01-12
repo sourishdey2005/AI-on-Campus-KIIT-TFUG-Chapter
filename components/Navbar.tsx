@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface NavbarProps {
@@ -20,6 +19,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
     { name: 'Governance', href: '#governance' }
   ];
 
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768209453/AI_on_campus_1_tjyhw8.jpg";
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
       scrolled 
@@ -28,7 +29,9 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#" className="flex items-center gap-4 group">
-          <div className="w-10 h-10 bg-orange-600/20 backdrop-blur-md border border-orange-500/30 rounded-xl flex items-center justify-center font-black text-white text-sm group-hover:rotate-12 transition-transform shadow-lg shadow-orange-600/10">TF</div>
+          <div className="w-10 h-10 bg-orange-600/20 backdrop-blur-md border border-orange-500/30 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg shadow-orange-600/10">
+            <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-cover" />
+          </div>
           <div className="hidden sm:block">
             <h1 className="text-xl font-black tracking-tighter">AI on Campus</h1>
             <p className="text-[9px] uppercase tracking-[0.4em] text-neutral-500 font-bold group-hover:text-orange-500 transition-colors">KIIT CHAPTER</p>
@@ -53,12 +56,12 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
               WIKI
             </button>
           </div>
-          <a 
-            href="#governance" 
+          <button 
+            onClick={() => onOpenPortal('recruitment')}
             className="px-6 py-2.5 glass border-white/10 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-600 hover:border-orange-500 transition-all shadow-xl"
           >
-            Join TF LAB
-          </a>
+            Join AI on Campus
+          </button>
         </div>
 
         <button className="md:hidden text-white p-2 glass rounded-lg" onClick={() => onOpenPortal('wiki')}>
