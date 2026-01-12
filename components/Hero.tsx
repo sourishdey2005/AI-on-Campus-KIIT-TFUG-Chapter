@@ -11,16 +11,17 @@ const Hero: React.FC = () => {
       <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-orange-600/10 blur-[150px] rounded-full animate-pulse-soft"></div>
       <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
       
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="max-w-3xl">
+      <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
+        <div className="w-full lg:max-w-[65%] xl:max-w-[60%]">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-orange-600/30 text-orange-500 text-[10px] font-bold mb-10 uppercase tracking-[0.2em]">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
             Official TensorFlow Student Society
           </div>
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.95] transition-all duration-700">
-            AI on <span className="tf-gradient">Campus</span> <br /> 
-            <span className="text-white/40">— KIIT</span> <span className="text-white/20 italic font-light">chapter</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter mb-8 leading-[0.95] transition-all duration-700 lg:whitespace-nowrap">
+            AI on <span className="tf-gradient">Campus</span>
+            <span className="text-white/40"> — KIIT</span> 
+            <span className="text-white/20 italic font-light ml-2">chapter</span>
           </h1>
           
           <p className="text-lg md:text-xl text-neutral-400 font-light mb-14 leading-relaxed max-w-2xl">
@@ -45,7 +46,7 @@ const Hero: React.FC = () => {
             </button>
           </div>
 
-          <div className="mt-24 flex items-center gap-16 border-t border-white/5 pt-14">
+          <div className="mt-24 flex items-center gap-16 border-t border-white/5 pt-14 max-w-2xl">
             <div className="group cursor-default">
               <p className="text-3xl font-bold text-white group-hover:text-orange-500 transition-colors">500+</p>
               <p className="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Active Minds</p>
@@ -62,36 +63,88 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Code Snippet Floating Visual */}
-      <div className="hidden xl:block absolute right-[8%] top-1/2 -translate-y-1/2 w-[520px] animate-float">
-        <div className="glass rounded-[2rem] p-8 border-white/10 shadow-2xl backdrop-blur-3xl overflow-hidden relative">
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <div className="w-32 h-32 border-[20px] border-orange-500 rounded-full"></div>
-          </div>
-          <div className="flex gap-2 mb-6">
-            <div className="w-3 h-3 rounded-full bg-red-500/30 border border-red-500/50"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500/30 border border-yellow-500/50"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500/30 border border-green-500/50"></div>
-          </div>
-          <pre className="mono text-[13px] leading-relaxed text-blue-300/90">
-            <code>{`import tensorflow as tf
+      {/* Floating Elements Area - Strategically placed to never overlap on 1440px+ screens */}
+      <div className="hidden lg:block absolute right-[2%] top-0 bottom-0 w-[35%] xl:w-[40%] pointer-events-none overflow-visible">
+        
+        {/* Main Code Card - Vertical Center */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[420px] xl:w-[500px] animate-float pointer-events-auto z-20">
+          <div className="glass rounded-[2rem] p-8 border-white/10 shadow-2xl backdrop-blur-3xl overflow-hidden relative">
+            <div className="absolute top-0 right-0 p-4 opacity-10">
+              <div className="w-24 h-24 border-[15px] border-orange-500 rounded-full"></div>
+            </div>
+            <div className="flex gap-2 mb-6">
+              <div className="w-3 h-3 rounded-full bg-red-500/30 border border-red-500/50"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500/30 border border-yellow-500/50"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500/30 border border-green-500/50"></div>
+            </div>
+            <pre className="mono text-[10px] xl:text-[12px] leading-relaxed text-blue-300/90">
+              <code>{`import tensorflow as tf
 
 @tf.function
-class TFLabArchitecture(tf.Module):
-  def __init__(self, name=None):
-    super().__init__(name=name)
-    self.layer = tf.keras.layers.Dense(
-        512, activation='relu')
-    self.output = tf.keras.layers.Dense(10)
+class NeuralCore(tf.Module):
+  def __init__(self):
+    self.layer = tf.keras.layers.Dense(1024)
+    self.dropout = tf.keras.layers.Dropout(0.5)
 
   def __call__(self, x):
-    x = self.layer(x)
-    return self.output(x)
+    return self.layer(x)
 
-# TF LAB: Deploying Intelligence
-model = TFLabArchitecture(name='KIIT_HUB')`}</code>
-          </pre>
+# AI on Campus: Ready for Deployment
+hub = NeuralCore()
+print("KIIT_CLUSTER_READY")`}</code>
+            </pre>
+          </div>
         </div>
+
+        {/* JSON API Response Card - Top Position */}
+        <div className="absolute top-[12%] right-[5%] w-[280px] xl:w-[320px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.5s' }}>
+          <div className="glass p-6 rounded-2xl border-white/5 shadow-xl bg-black/40">
+             <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
+                <span className="text-[8px] font-black uppercase text-blue-500 tracking-widest">Model Endpoint</span>
+                <span className="text-[8px] font-black text-green-500">200 OK</span>
+             </div>
+             <pre className="mono text-[9px] xl:text-[10px] text-green-400/80 leading-tight">
+{`{
+  "node": "KIIT_TF_LAB",
+  "status": "synchronized",
+  "accuracy": 0.9992,
+  "cluster": "dl-research",
+  "active_users": 524
+}`}
+             </pre>
+          </div>
+        </div>
+
+        {/* Analytics Card - Bottom Position */}
+        <div className="absolute bottom-[10%] right-[8%] w-[340px] xl:w-[380px] animate-float pointer-events-auto z-30" style={{ animationDelay: '1.2s' }}>
+           <div className="glass p-6 rounded-3xl border-white/10 shadow-2xl bg-gradient-to-br from-orange-500/5 to-transparent">
+              <div className="flex items-center gap-4 mb-6">
+                 <div className="w-10 h-10 rounded-xl bg-orange-600/20 flex items-center justify-center text-orange-500">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2 2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                 </div>
+                 <div>
+                    <p className="text-[9px] font-black text-neutral-500 uppercase tracking-widest">Layer Stats</p>
+                    <p className="text-xs font-bold text-white tracking-tight">Gradient Flow</p>
+                 </div>
+              </div>
+              <div className="flex items-end gap-1 h-16 mb-4 px-2">
+                 {[30, 50, 40, 80, 60, 25, 75, 50, 90, 35].map((h, i) => (
+                    <div key={i} className="flex-1 bg-white/5 rounded-t-sm relative group">
+                       <div 
+                         className="absolute bottom-0 left-0 right-0 bg-orange-600/40 group-hover:bg-orange-500 transition-all rounded-t-sm" 
+                         style={{ height: `${h}%` }}
+                       ></div>
+                    </div>
+                 ))}
+              </div>
+              <div className="flex justify-between text-[7px] font-black uppercase tracking-widest text-neutral-600">
+                 <span>Input</span>
+                 <span>Hidden_04</span>
+                 <span>Output</span>
+              </div>
+           </div>
+        </div>
+
       </div>
     </section>
   );
