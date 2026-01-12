@@ -6,6 +6,9 @@ import About from './components/About';
 import Architecture from './components/Architecture';
 import DomainMap from './components/DomainMap';
 import ModelVisualizer from './components/ModelVisualizer';
+import NeuralScroll from './components/NeuralScroll';
+import OperatingModel from './components/OperatingModel';
+import CareerAccelerator from './components/CareerAccelerator';
 import Benefits from './components/Benefits';
 import Footer from './components/Footer';
 import { ACTIVITIES, ORG_CHART } from './constants';
@@ -29,8 +32,17 @@ const App: React.FC = () => {
         {/* Model Architecture Visualizer */}
         <ModelVisualizer />
 
+        {/* Inside a Neural Network Scroll Animation */}
+        <NeuralScroll />
+
         {/* Intelligence Architecture Section (Clusters) */}
         <Architecture />
+
+        {/* Operating Model & Member Journey */}
+        <OperatingModel />
+
+        {/* Career Growth & Roadmap */}
+        <CareerAccelerator />
 
         {/* Expected Benefits Section */}
         <Benefits />
@@ -52,7 +64,7 @@ const App: React.FC = () => {
                 className="px-8 py-4 glass border-white/10 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white/10 hover:border-white/20 transition-all flex items-center gap-3"
               >
                 Society Calendar
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v12a2 2 0 002 2z"></path></svg>
               </button>
             </div>
             
@@ -118,7 +130,7 @@ const App: React.FC = () => {
                 <div className="grid gap-6">
                   {[
                     { label: 'Industry Readiness', val: 'Global Benchmarked' },
-                    { label: 'Research Exposure', val: 'SOTA Repository' },
+                    { label: 'Research Exposure', val: 'Advanced Repository' },
                     { label: 'TFUG Network', val: 'Direct Access' },
                     { label: 'Compute Credits', val: 'GCP Ready' }
                   ].map((item, i) => (

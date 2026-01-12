@@ -17,8 +17,8 @@ const Benefits: React.FC = () => {
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* For Students */}
-          <div className="group glass p-10 rounded-[3rem] border-white/5 bg-white/[0.01] hover:bg-orange-500/[0.02] hover:border-orange-500/20 transition-all duration-700">
-            <div className="w-14 h-14 rounded-2xl bg-orange-600/10 border border-orange-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
+          <div className="group glass p-10 rounded-[3rem] border-white/5 hover:bg-orange-500/[0.02] hover:border-orange-500/20 transition-all duration-700">
+            <div className="w-14 h-14 rounded-2xl glass border border-orange-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
               🎓
             </div>
             <h4 className="text-2xl font-black text-white mb-8 tracking-tight">For Students</h4>
@@ -43,8 +43,8 @@ const Benefits: React.FC = () => {
           </div>
 
           {/* For the College */}
-          <div className="group glass p-10 rounded-[3rem] border-white/5 bg-white/[0.01] hover:bg-blue-500/[0.02] hover:border-blue-500/20 transition-all duration-700">
-            <div className="w-14 h-14 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
+          <div className="group glass p-10 rounded-[3rem] border-white/5 hover:bg-blue-500/[0.02] hover:border-blue-500/20 transition-all duration-700">
+            <div className="w-14 h-14 rounded-2xl glass border border-blue-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
               🏛️
             </div>
             <h4 className="text-2xl font-black text-white mb-8 tracking-tight">For the University</h4>
@@ -69,8 +69,8 @@ const Benefits: React.FC = () => {
           </div>
 
           {/* For TensorFlow Global */}
-          <div className="group glass p-10 rounded-[3rem] border-white/5 bg-white/[0.01] hover:bg-green-500/[0.02] hover:border-green-500/20 transition-all duration-700">
-            <div className="w-14 h-14 rounded-2xl bg-green-600/10 border border-green-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
+          <div className="group glass p-10 rounded-[3rem] border-white/5 hover:bg-green-500/[0.02] hover:border-green-500/20 transition-all duration-700">
+            <div className="w-14 h-14 rounded-2xl glass border border-green-500/20 flex items-center justify-center text-2xl mb-10 group-hover:scale-110 transition-transform">
               🌍
             </div>
             <h4 className="text-2xl font-black text-white mb-8 tracking-tight">For TFUG Global</h4>

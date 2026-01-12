@@ -19,32 +19,36 @@ interface Link extends d3.SimulationLinkDatum<Node> {
 const DomainMap: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [hoveredNode, setHoveredNode] = useState<Node | null>(null);
+  const rotationAngle = useRef(0);
 
   const data: { nodes: Node[]; links: Link[] } = {
     nodes: [
-      { id: 'dl', group: 1, label: 'Deep Learning', description: 'The core engine of modern AI architectures.', color: '#FF6F00' },
-      { id: 'cv', group: 1, label: 'Computer Vision', description: 'Teaching machines to perceive visual reality.', color: '#FFA000' },
-      { id: 'nlp', group: 1, label: 'NLP', description: 'Advanced natural language processing and syntax.', color: '#FFB300' },
-      { id: 'llm', group: 1, label: 'LLMs', description: 'Large-scale generative language modeling.', color: '#FFD54F' },
-      { id: 'genai', group: 2, label: 'Generative AI', description: 'Creating new content across modalities.', color: '#2563EB' },
-      { id: 'rl', group: 2, label: 'Reinforcement Learning', description: 'Agent-based learning through interaction.', color: '#3B82F6' },
-      { id: 'mlops', group: 3, label: 'MLOps', description: 'The engineering lifecycle of model deployment.', color: '#8B5CF6' },
-      { id: 'edge', group: 3, label: 'Edge AI', description: 'Intelligence on low-power hardware.', color: '#D946EF' },
-      { id: 'ds', group: 4, label: 'Data Science', description: 'The foundation of inference and analysis.', color: '#10B981' },
+      { id: 'dl', group: 1, label: 'Deep Learning', description: 'Core neural engine optimized for gradient-based optimization.', color: '#FF6F00' },
+      { id: 'cv', group: 1, label: 'Computer Vision', description: 'Spatial feature extraction via convolutional kernels and ViTs.', color: '#FFA000' },
+      { id: 'nlp', group: 1, label: 'NLP', description: 'Syntactic and semantic analysis of sequential tokens.', color: '#FFB300' },
+      { id: 'llm', group: 1, label: 'LLMs', description: 'Autoregressive generation at scale using multi-head attention.', color: '#FFD54F' },
+      { id: 'genai', group: 2, label: 'Generative AI', description: 'Cross-modal latent space manipulation for synthetic content.', color: '#2563EB' },
+      { id: 'rl', group: 2, label: 'Reinforcement Learning', description: 'Markov decision process optimization via policy gradients.', color: '#3B82F6' },
+      { id: 'mlops', group: 3, label: 'MLOps', description: 'Continuous deployment pipelines and model registry orchestration.', color: '#8B5CF6' },
+      { id: 'edge', group: 3, label: 'Edge AI', description: 'Quantized inference for low-latency hardware constraints.', color: '#D946EF' },
+      { id: 'ds', group: 4, label: 'Data Science', description: 'Foundational statistical inference and feature engineering.', color: '#10B981' },
+      { id: 'tfx', group: 3, label: 'TFX Pipelines', description: 'Production-ready machine learning platform for TensorFlow.', color: '#A855F7' },
+      { id: 'tflite', group: 3, label: 'TF Lite', description: 'Deploying high-performance models on mobile and IoT.', color: '#EC4899' },
     ],
     links: [
-      { source: 'dl', target: 'cv', tech: 'TensorFlow' },
-      { source: 'dl', target: 'nlp', tech: 'Keras' },
-      { source: 'nlp', target: 'llm', tech: 'Transformers' },
+      { source: 'dl', target: 'cv', tech: 'CNN' },
+      { source: 'dl', target: 'nlp', tech: 'RNN' },
+      { source: 'nlp', target: 'llm', tech: 'Transformer' },
       { source: 'llm', target: 'genai', tech: 'Diffusion' },
-      { source: 'dl', target: 'genai', tech: 'GANs' },
-      { source: 'dl', target: 'rl', tech: 'Policy Gradients' },
-      { source: 'mlops', target: 'dl', tech: 'TFX' },
-      { source: 'edge', target: 'dl', tech: 'TF Lite' },
-      { source: 'ds', target: 'dl', tech: 'tf.data' },
-      { source: 'mlops', target: 'ds', tech: 'Pandas' },
-      { source: 'cv', target: 'genai', tech: 'AutoEncoders' },
-      { source: 'nlp', target: 'genai', tech: 'VAE' },
+      { source: 'dl', target: 'genai', tech: 'GAN' },
+      { source: 'dl', target: 'rl', tech: 'Q-Learning' },
+      { source: 'mlops', target: 'dl', tech: 'CI/CD' },
+      { source: 'edge', target: 'dl', tech: 'Quantization' },
+      { source: 'ds', target: 'dl', tech: 'Inference' },
+      { source: 'mlops', target: 'tfx', tech: 'Orchestration' },
+      { source: 'dl', target: 'tfx', tech: 'Training' },
+      { source: 'edge', target: 'tflite', tech: 'Deployment' },
+      { source: 'dl', target: 'tflite', tech: 'Optimization' },
     ]
   };
 
@@ -52,28 +56,43 @@ const DomainMap: React.FC = () => {
     if (!svgRef.current) return;
 
     const width = svgRef.current.clientWidth;
-    const height = 500;
+    const height = 600;
     const svg = d3.select(svgRef.current)
       .attr('viewBox', [0, 0, width, height]);
 
     svg.selectAll('*').remove();
 
-    const simulation = d3.forceSimulation<Node>(data.nodes)
-      .force('link', d3.forceLink<Node, Link>(data.links).id(d => d.id).distance(120))
-      .force('charge', d3.forceManyBody().strength(-400))
-      .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('x', d3.forceX(width / 2).strength(0.1))
-      .force('y', d3.forceY(height / 2).strength(0.1));
+    // Create a container for the graph to rotate
+    const g = svg.append('g')
+      .attr('transform', `translate(${width / 2}, ${height / 2})`);
 
-    const link = svg.append('g')
+    const simulation = d3.forceSimulation<Node>(data.nodes)
+      .force('link', d3.forceLink<Node, Link>(data.links).id(d => d.id).distance(150))
+      .force('charge', d3.forceManyBody().strength(-800))
+      .force('center', d3.forceCenter(0, 0))
+      .force('collision', d3.forceCollide().radius(60));
+
+    const link = g.append('g')
       .attr('class', 'links')
       .selectAll('line')
       .data(data.links)
       .join('line')
       .attr('class', 'link')
-      .attr('stroke', '#333');
+      .attr('stroke', '#222')
+      .attr('stroke-width', 1.5)
+      .attr('stroke-dasharray', '4,4');
 
-    const node = svg.append('g')
+    // Add glowing data packets moving along links
+    const packets = g.append('g')
+      .attr('class', 'packets')
+      .selectAll('circle')
+      .data(data.links)
+      .join('circle')
+      .attr('r', 2)
+      .attr('fill', '#FF6F00')
+      .attr('filter', 'drop-shadow(0 0 4px #FF6F00)');
+
+    const node = g.append('g')
       .attr('class', 'nodes')
       .selectAll('g')
       .data(data.nodes)
@@ -81,28 +100,45 @@ const DomainMap: React.FC = () => {
       .attr('class', 'node')
       .call(drag(simulation) as any);
 
+    // Node outer glow
+    node.append('circle')
+      .attr('r', 12)
+      .attr('fill', 'transparent')
+      .attr('stroke', d => d.color)
+      .attr('stroke-width', 1)
+      .attr('class', 'pulse-glow');
+
+    // Node core
     node.append('circle')
       .attr('r', 8)
       .attr('fill', d => d.color)
-      .attr('stroke', d => `${d.color}44`)
       .on('mouseover', (event, d) => {
         setHoveredNode(d);
+        d3.select(event.currentTarget.parentNode).select('text').transition().style('opacity', 1).attr('font-size', '14px');
         d3.select(event.currentTarget).transition().attr('r', 12);
       })
       .on('mouseout', (event) => {
         setHoveredNode(null);
+        d3.select(event.currentTarget.parentNode).select('text').transition().style('opacity', 0.6).attr('font-size', '10px');
         d3.select(event.currentTarget).transition().attr('r', 8);
-      })
-      .on('click', () => {
-        document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
       });
 
     node.append('text')
-      .attr('dy', -15)
+      .attr('dy', 25)
       .attr('text-anchor', 'middle')
+      .style('opacity', 0.6)
+      .style('font-weight', '700')
+      .style('fill', '#888')
+      .style('pointer-events', 'none')
       .text(d => d.label);
 
-    simulation.on('tick', () => {
+    const tick = () => {
+      // Apply rotation
+      if (!hoveredNode) {
+        rotationAngle.current += 0.0015;
+      }
+      g.attr('transform', `translate(${width / 2}, ${height / 2}) rotate(${rotationAngle.current * 50})`);
+
       link
         .attr('x1', (d: any) => d.source.x)
         .attr('y1', (d: any) => d.source.y)
@@ -110,8 +146,28 @@ const DomainMap: React.FC = () => {
         .attr('y2', (d: any) => d.target.y);
 
       node
-        .attr('transform', (d: any) => `translate(${d.x},${d.y})`);
-    });
+        .attr('transform', (d: any) => `translate(${d.x},${d.y}) rotate(${-(rotationAngle.current * 50)})`); // Counter-rotate text
+
+      // Animate data packets
+      const t = Date.now() * 0.001;
+      packets
+        .attr('cx', (d: any) => {
+          const speed = 0.5 + (Math.sin(t + d.index) * 0.2);
+          const progress = (t * speed) % 1;
+          return d.source.x + (d.target.x - d.source.x) * progress;
+        })
+        .attr('cy', (d: any) => {
+          const speed = 0.5 + (Math.sin(t + d.index) * 0.2);
+          const progress = (t * speed) % 1;
+          return d.source.y + (d.target.y - d.source.y) * progress;
+        })
+        .attr('opacity', (d: any) => {
+          const t_val = (t * 0.5) % 1;
+          return Math.sin(t_val * Math.PI);
+        });
+    };
+
+    simulation.on('tick', tick);
 
     function drag(sim: d3.Simulation<Node, undefined>) {
       function dragstarted(event: any) {
@@ -137,59 +193,85 @@ const DomainMap: React.FC = () => {
         .on('end', dragended);
     }
 
-    return () => simulation.stop();
-  }, [data.nodes, data.links]);
+    return () => {
+      simulation.stop();
+    };
+  }, [data.nodes, data.links, hoveredNode]);
 
   return (
     <section className="py-24 bg-[#050505] relative overflow-hidden border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,111,0,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+      
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row items-start justify-between mb-16 gap-8">
           <div className="max-w-xl">
-            <h2 className="text-xs uppercase tracking-[0.4em] text-orange-500 font-black mb-6">Neural Knowledge Graph</h2>
-            <h3 className="text-5xl font-extrabold tracking-tighter">Live AI Domain Map</h3>
+            <h2 className="text-xs uppercase tracking-[0.4em] text-orange-500 font-black mb-6">Neural Topology</h2>
+            <h3 className="text-5xl font-extrabold tracking-tighter">Live Intelligence Graph</h3>
             <p className="text-neutral-500 mt-6 leading-relaxed text-lg font-light">
-              Interactive visualization of the interconnected neural landscape. Nodes represent research clusters, while edges indicate shared technologies like TensorFlow, Transformers, and MLOps pipelines.
+              An active visualization of the society's research domains. Observe the continuous propagation of knowledge across the TensorFlow ecosystem, from core Deep Learning to specialized Edge deployment.
             </p>
           </div>
           
           <div className="shrink-0">
-             <div className="glass p-6 rounded-2xl border-white/10 min-w-[280px]">
+             <div className="glass p-8 rounded-3xl border-white/10 min-w-[320px] transition-all duration-500">
                 {hoveredNode ? (
                   <div className="animate-in fade-in slide-in-from-right-4">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: hoveredNode.color }}></div>
-                      <h4 className="font-bold text-lg uppercase tracking-tight">{hoveredNode.label}</h4>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-4 h-4 rounded-full animate-pulse" style={{ backgroundColor: hoveredNode.color }}></div>
+                      <h4 className="font-black text-xl tracking-tight text-white uppercase">{hoveredNode.label}</h4>
                     </div>
-                    <p className="text-sm text-neutral-400 leading-relaxed font-medium">{hoveredNode.description}</p>
-                    <div className="mt-4 pt-4 border-t border-white/5">
-                       <span className="text-[10px] text-orange-500 font-black uppercase tracking-widest">Protocol Active</span>
+                    <p className="text-neutral-400 leading-relaxed font-medium text-sm">{hoveredNode.description}</p>
+                    <div className="mt-6 pt-6 border-t border-white/5 flex justify-between items-center">
+                       <span className="text-[10px] text-orange-500 font-black uppercase tracking-widest">Node Inspected</span>
+                       <span className="text-[10px] text-neutral-600 font-bold uppercase tracking-widest">ID: 0x{hoveredNode.id.toUpperCase()}</span>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center py-8 text-neutral-600">
-                    <svg className="w-8 h-8 mb-4 opacity-20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
-                    <p className="text-[10px] uppercase tracking-widest font-black">Hover Nodes to Inspect</p>
+                  <div className="flex flex-col items-center justify-center py-10 text-neutral-600">
+                    <div className="w-12 h-12 mb-6 opacity-20 relative">
+                       <div className="absolute inset-0 border-2 border-dashed border-current rounded-full animate-[spin_10s_linear_infinite]"></div>
+                       <svg className="w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <p className="text-[10px] uppercase tracking-[0.3em] font-black text-center">Synchronizing Neural Links<br/>Hover to intercept</p>
                   </div>
                 )}
              </div>
           </div>
         </div>
 
-        <div className="relative glass rounded-[3rem] border-white/5 bg-white/[0.01] overflow-hidden cursor-crosshair">
-          <svg ref={svgRef} className="w-full h-[500px]"></svg>
-          <div className="absolute bottom-10 left-10 flex gap-6 text-[9px] font-black uppercase tracking-[0.2em] text-neutral-500">
-             <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-orange-500"></span> Core Intelligence
+        <div className="relative glass rounded-[4rem] border-white/5 bg-white/[0.01] overflow-hidden cursor-move shadow-2xl">
+          <svg ref={svgRef} className="w-full h-[600px]"></svg>
+          
+          <div className="absolute top-8 left-8 flex flex-col gap-4">
+            <div className="flex items-center gap-3 glass px-4 py-2 rounded-full border-white/10">
+              <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+              <span className="text-[9px] font-black uppercase tracking-widest text-neutral-400">System Live</span>
+            </div>
+          </div>
+
+          <div className="absolute bottom-10 right-10 flex gap-8 text-[9px] font-black uppercase tracking-[0.2em] text-neutral-500 glass px-8 py-4 rounded-3xl border-white/10 backdrop-blur-md">
+             <div className="flex items-center gap-2 group cursor-help">
+                <span className="w-2 h-2 rounded-full bg-orange-500 group-hover:scale-150 transition-transform"></span> Core Research
              </div>
-             <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-blue-500"></span> Applied Science
+             <div className="flex items-center gap-2 group cursor-help">
+                <span className="w-2 h-2 rounded-full bg-blue-500 group-hover:scale-150 transition-transform"></span> Product Stack
              </div>
-             <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-purple-500"></span> Infrastructure
+             <div className="flex items-center gap-2 group cursor-help">
+                <span className="w-2 h-2 rounded-full bg-purple-500 group-hover:scale-150 transition-transform"></span> Engineering Ops
              </div>
           </div>
         </div>
       </div>
+      
+      <style>{`
+        .pulse-glow {
+          animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+          0% { transform: scale(0.8); opacity: 0.8; }
+          100% { transform: scale(2.5); opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 };

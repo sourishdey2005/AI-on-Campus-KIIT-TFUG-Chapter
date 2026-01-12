@@ -107,7 +107,7 @@ export const ACTIVITIES: Activity[] = [
   {
     title: 'Notebook Review Sessions',
     icon: '📓',
-    description: 'Deep-dives into SOTA architectures and code auditing for peer learning.',
+    description: 'Deep-dives into advanced architectures and code auditing for peer learning.',
     outcome: 'Coding Best Practices'
   },
   {
