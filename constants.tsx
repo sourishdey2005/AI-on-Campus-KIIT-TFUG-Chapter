@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Cluster, Activity, TeamMember } from './types';
 
@@ -139,9 +138,9 @@ export const ACTIVITIES: Activity[] = [
 ];
 
 export const ORG_CHART: TeamMember[] = [
-  { name: 'Faculty In-Charge', role: 'Institutional Oversight', level: 0 },
-  { name: 'Faculty Advisor', role: 'Academic Coordination', level: 1 },
-  { name: 'President & Vice President', role: 'Vision & Growth', level: 2 },
-  { name: 'Technical & Non-Tech Leads', role: 'Operational Excellence', level: 3 },
-  { name: 'Domain POCs & Coordinators', role: 'Execution & Liaison', level: 4 }
+  { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', level: 0 },
+  { name: 'Sourish Dey', role: 'President', level: 1 },
+  { name: 'Rounak Banerjee', role: 'Vice President', level: 2 },
+  { name: 'Anusmita Sahu', role: 'Vice President', level: 2 },
+  { name: 'Domain POCs & coordinators', role: 'Technical Execution', level: 3 }
 ];

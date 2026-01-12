@@ -101,10 +101,10 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
             </header>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: 'Dr. Faculty Lead', role: 'Faculty In-Charge', cluster: 'Oversight' },
-                { name: 'Arjun Sharma', role: 'President', cluster: 'Strategy' },
-                { name: 'Sarah Joseph', role: 'Technical Lead', cluster: 'Deep Learning' },
-                { name: 'Rahul Verma', role: 'DevOps Head', cluster: 'Engineering Ops' }
+                { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight' },
+                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy' },
+                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy' },
+                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy' }
               ].map((m, i) => (
                 <div key={i} className="glass p-8 rounded-3xl border-white/5 text-center group hover:border-red-500/30 transition-all">
                   <div className="w-20 h-20 bg-neutral-900 rounded-full mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform"></div>
