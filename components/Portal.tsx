@@ -45,9 +45,9 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
             </header>
             <div className="grid gap-6">
               {[
-                { title: 'Neural Latent Splicing for High-Res Synthesis', author: 'Vision Cluster', year: '2024' },
-                { title: 'Attention-based Geo-Spatial Analysis', author: 'Foundation Cluster', year: '2023' },
-                { title: 'Quantized Transformers on ESP32 Hardware', author: 'Edge AI Cluster', year: '2024' }
+                { title: 'Neural Latent Splicing for High-Res Synthesis', author: 'Vision Cluster', year: '2026' },
+                { title: 'Attention-based Geo-Spatial Analysis', author: 'Foundation Cluster', year: '2025' },
+                { title: 'Quantized Transformers on ESP32 Hardware', author: 'Edge AI Cluster', year: '2026' }
               ].map((item, i) => (
                 <div key={i} className="glass p-6 rounded-2xl border-white/5 flex justify-between items-center group hover:border-blue-500/40 transition-all cursor-pointer">
                   <div>
@@ -121,7 +121,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
         return (
           <div className="max-w-2xl mx-auto space-y-10 animate-in fade-in slide-in-from-bottom-10 duration-500">
             <header className="text-center">
-              <span className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">Admissions 2024</span>
+              <span className="text-blue-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">Admissions 2026</span>
               <h2 className="text-4xl font-black tracking-tighter">Society Selection</h2>
             </header>
             <div className="glass p-10 rounded-[3rem] border-white/10 space-y-8">
@@ -133,7 +133,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
                 <button className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-blue-500 transition-all shadow-xl">Start Technical Assessment</button>
                 <button className="w-full py-5 glass border-white/10 rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-white/5 transition-all">Non-Technical Application</button>
               </div>
-              <p className="text-center text-[10px] text-neutral-600 uppercase tracking-widest">Applications close December 15th, 2024</p>
+              <p className="text-center text-[10px] text-neutral-600 uppercase tracking-widest">Applications close December 15th, 2026</p>
             </div>
           </div>
         );

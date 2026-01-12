@@ -1,5 +1,5 @@
 {
-  "name": "ai-on-campus-–-kiit-tfug-chapter",
+  "name": "ai-on-campus-kiit-tfug-chapter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,13 +11,14 @@
   "dependencies": {
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "d3": "7",
-    "framer-motion": "11.11.17"
+    "framer-motion": "11.11.17",
+    "d3": "7.9.0"
   },
   "devDependencies": {
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "@vitejs/plugin-react": "^4.3.3"
   }
 }

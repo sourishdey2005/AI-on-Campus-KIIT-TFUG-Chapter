@@ -44,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
           <div>
             <h5 className="font-bold mb-6 text-sm uppercase tracking-widest text-white">Selection</h5>
             <ul className="space-y-4 text-sm text-neutral-500">
-              <li><button onClick={() => onOpenPortal('recruitment')} className="hover:text-white transition-colors text-left">Recruitment 2024</button></li>
+              <li><button onClick={() => onOpenPortal('recruitment')} className="hover:text-white transition-colors text-left">Recruitment 2026</button></li>
               <li><button onClick={() => onOpenPortal('process')} className="hover:text-white transition-colors text-left">Interview Process</button></li>
               <li><button onClick={() => onOpenPortal('bylaws')} className="hover:text-white transition-colors text-left">Society Bylaws</button></li>
             </ul>
@@ -52,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
         </div>
         
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2024 AI on Campus KIIT. All intellectual property remains with the researchers.</p>
+          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI on Campus KIIT. All intellectual property remains with the researchers.</p>
           <div className="flex gap-8 text-[10px] tracking-widest uppercase font-bold text-neutral-500">
             <span className="text-orange-600/50">Powered by TensorFlow Community</span>
             <span className="text-blue-600/50">KIIT University</span>
