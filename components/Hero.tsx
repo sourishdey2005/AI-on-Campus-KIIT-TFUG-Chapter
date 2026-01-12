@@ -1,28 +1,61 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   const scrollToJoin = () => document.getElementById('governance')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToArchitecture = () => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
+  const shouldReduceMotion = useReducedMotion();
 
   // States for mini-animations
   const [activeMatrixCell, setActiveMatrixCell] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveMatrixCell(Math.floor(Math.random() * 9));
     }, 2000);
-    return () => clearInterval(interval);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        });
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden mesh-bg">
+    <section ref={containerRef} className="relative min-h-screen flex items-center pt-20 overflow-hidden mesh-bg group">
+      {/* Cursor Aware Glow */}
+      {!shouldReduceMotion && (
+        <motion.div 
+          animate={{ x: mousePos.x - 300, y: mousePos.y - 300 }}
+          transition={{ type: "spring", damping: 30, stiffness: 100 }}
+          className="pointer-events-none absolute w-[600px] h-[600px] bg-orange-600/5 blur-[120px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"
+        />
+      )}
+
       {/* Background Decorative Elements */}
       <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-orange-600/10 blur-[150px] rounded-full animate-pulse-soft"></div>
       <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
       
       <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
-        <div className="w-full lg:max-w-[60%]">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full lg:max-w-[60%]"
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-orange-600/30 text-orange-500 text-[10px] font-black mb-10 uppercase tracking-[0.2em]">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
             Official TensorFlow Student Society
@@ -41,19 +74,23 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-5">
-            <button 
+            <motion.button 
               onClick={scrollToJoin}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               className="px-10 py-5 bg-orange-600/20 backdrop-blur-xl border border-orange-500/40 text-white rounded-xl font-bold hover:bg-orange-600 hover:shadow-[0_0_40px_rgba(255,111,0,0.3)] transition-all flex items-center justify-center gap-3 group"
             >
               Join TF LAB
               <svg className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </button>
-            <button 
+            </motion.button>
+            <motion.button 
               onClick={scrollToArchitecture}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               className="px-10 py-5 glass border-white/10 text-white rounded-xl font-bold hover:bg-white/10 hover:border-white/20 transition-all"
             >
               Explore Domains
-            </button>
+            </motion.button>
           </div>
 
           <div className="mt-24 flex items-center gap-16 border-t border-white/5 pt-14 max-w-2xl">
@@ -70,15 +107,15 @@ const Hero: React.FC = () => {
               <p className="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 font-semibold">Affiliated Hub</p>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Floating Elements Infrastructure - Managed Cluster */}
+      {/* Floating Elements Infrastructure */}
       <div className="hidden lg:block absolute right-[2%] top-[10%] bottom-[10%] w-[35%] xl:w-[40%] pointer-events-none">
         
-        {/* Artifact 1: Confusion Matrix Highlight - TOP LEFT CLUSTER */}
+        {/* Artifact 1: Confusion Matrix */}
         <div className="absolute top-[5%] left-[5%] w-[160px] animate-float pointer-events-auto z-30" style={{ animationDelay: '0.2s' }}>
-          <div className="glass p-4 rounded-2xl border-white/5 bg-black/40">
+          <motion.div whileHover={{ scale: 1.05 }} className="glass p-4 rounded-2xl border-white/5 bg-black/40 shadow-2xl">
              <p className="text-[8px] font-black uppercase text-neutral-600 tracking-widest mb-3">Confusion Matrix</p>
              <div className="grid grid-cols-3 gap-1">
                {Array.from({ length: 9 }).map((_, i) => (
@@ -90,12 +127,12 @@ const Hero: React.FC = () => {
                <span>P_02</span>
                <span>P_03</span>
              </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Artifact 2: Main Code Card - CENTER CENTER CLUSTER */}
+        {/* Artifact 2: Main Code Card */}
         <div className="absolute top-1/2 -translate-y-1/2 left-[10%] w-[420px] animate-float pointer-events-auto z-20">
-          <div className="glass rounded-[2rem] p-8 border-white/10 shadow-2xl backdrop-blur-3xl overflow-hidden relative">
+          <motion.div whileHover={{ scale: 1.02 }} className="glass rounded-[2rem] p-8 border-white/10 shadow-2xl backdrop-blur-3xl overflow-hidden relative">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <div className="w-24 h-24 border-[15px] border-orange-500 rounded-full"></div>
             </div>
@@ -119,12 +156,12 @@ class NeuralCore(tf.Module):
 hub = NeuralCore()
 print("SYS_READY_0x7F")`}</code>
             </pre>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Artifact 3: Data Ingestion Stream - MID LEFT CLUSTER */}
+        {/* Artifact 3: Data Ingestion Stream */}
         <div className="absolute top-[40%] right-[10%] w-[200px] animate-float pointer-events-auto z-10" style={{ animationDelay: '1.5s' }}>
-           <div className="glass p-4 rounded-xl border-white/5 overflow-hidden">
+           <motion.div whileHover={{ scale: 1.05 }} className="glass p-4 rounded-xl border-white/5 overflow-hidden shadow-2xl">
               <div className="flex items-center justify-between mb-3">
                  <span className="text-[8px] font-black uppercase text-blue-500 tracking-widest">Ingestion Pipeline</span>
                  <div className="flex gap-1">
@@ -140,12 +177,12 @@ print("SYS_READY_0x7F")`}</code>
                  </div>
                  <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
               </div>
-           </div>
+           </motion.div>
         </div>
 
-        {/* Artifact 5: Live Sparkline Growth - BOTTOM RIGHT CLUSTER */}
+        {/* Artifact 5: Live Sparkline Growth */}
         <div className="absolute bottom-[5%] right-[5%] w-[280px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
-          <div className="glass p-6 rounded-3xl border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
+          <motion.div whileHover={{ scale: 1.05 }} className="glass p-6 rounded-3xl border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
              <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 text-xs">📈</div>
                 <div>
@@ -163,7 +200,7 @@ print("SYS_READY_0x7F")`}</code>
                    </linearGradient>
                 </defs>
              </svg>
-          </div>
+          </motion.div>
         </div>
 
       </div>
