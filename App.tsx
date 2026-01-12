@@ -138,7 +138,7 @@ const App: React.FC = () => {
                 <h2 className="text-xs uppercase tracking-[0.4em] text-blue-500 font-black mb-8">Selection Strategy</h2>
                 <h3 className="text-5xl md:text-6xl font-extrabold tracking-tighter mb-10 leading-[0.95]">Elite <span className="text-white/40">Recruitment</span></h3>
                 <p className="text-neutral-400 text-xl font-light leading-relaxed mb-12">
-                  AI on Campus – KIIT TFUG is a sanctuary for the exceptional. We identify high-potential students through multi-stage technical audits, live sprints, and peer-consensus interviews.
+                  AI Guild on Campus – KIIT TFUG is a sanctuary for the exceptional. We identify high-potential students through multi-stage technical audits, live sprints, and peer-consensus interviews.
                 </p>
                 
                 <div className="space-y-8">

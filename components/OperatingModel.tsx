@@ -27,7 +27,7 @@ const OperatingModel: React.FC = () => {
         <div className="mb-32">
           <div className="max-w-xl mb-16">
             <h2 className="text-xs uppercase tracking-[0.4em] text-orange-500 font-black mb-6">Operating Model</h2>
-            <h3 className="text-5xl font-extrabold tracking-tighter">How AI on Campus – KIIT TFUG Functions</h3>
+            <h3 className="text-5xl font-extrabold tracking-tighter">How AI Guild on Campus – KIIT TFUG Functions</h3>
             <p className="text-neutral-500 mt-6 leading-relaxed text-lg font-light">
               We move in a high-fidelity 6-step cycle designed to convert raw talent into industry-standard practitioners.
             </p>

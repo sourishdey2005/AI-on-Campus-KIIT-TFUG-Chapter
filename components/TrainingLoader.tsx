@@ -45,7 +45,7 @@ const TrainingLoader: React.FC = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-40 h-40 md:w-56 md:h-56 mb-16 rounded-[3rem] glass border-white/10 p-4 overflow-hidden shadow-[0_0_80px_rgba(255,111,0,0.15)] flex items-center justify-center bg-white/[0.02]"
             >
-              <img src={logoUrl} alt="AI on Campus" className="w-full h-full object-contain" />
+              <img src={logoUrl} alt="AI Guild on Campus" className="w-full h-full object-contain" />
             </motion.div>
 
             <div className="w-full max-w-md">

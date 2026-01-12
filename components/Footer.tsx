@@ -14,10 +14,10 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
           <div className="col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden p-1 shadow-lg">
-                <img src={logoUrl} alt="AI on Campus Logo" className="w-full h-full object-contain" />
+                <img src={logoUrl} alt="AI Guild on Campus Logo" className="w-full h-full object-contain" />
               </div>
               <div>
-                <h1 className="text-xl font-bold tracking-tight">AI on Campus</h1>
+                <h1 className="text-xl font-bold tracking-tight">AI Guild on Campus</h1>
                 <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500">KIIT Chapter</p>
               </div>
             </div>
@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
         </div>
         
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI on Campus KIIT. All intellectual property remains with the Authorized personals</p>
+          <p className="text-neutral-600 text-[10px] tracking-widest uppercase">© 2026 AI Guild on Campus KIIT. All intellectual property remains with the Authorized personals</p>
           <div className="flex gap-8 text-[10px] tracking-widest uppercase font-bold text-neutral-500">
             <span className="text-orange-600/50">Powered by TensorFlow Community</span>
             <span className="text-blue-600/50">KIIT University</span>
