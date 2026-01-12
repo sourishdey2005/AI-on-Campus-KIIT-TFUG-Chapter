@@ -99,24 +99,25 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
               <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">Society Census</span>
               <h2 className="text-4xl font-black tracking-tighter">Member Directory</h2>
             </header>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight' },
                 { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
                 { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },
                 { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' }
               ].map((m, i) => (
-                <div key={i} className="glass p-8 rounded-3xl border-white/5 text-center group hover:border-red-500/30 transition-all">
-                  <div className="w-20 h-20 bg-neutral-900 rounded-full mx-auto mb-6 border border-white/10 group-hover:scale-110 transition-transform overflow-hidden flex items-center justify-center">
+                <div key={i} className="glass p-10 rounded-[3rem] border-white/5 text-center group hover:border-red-500/30 transition-all shadow-xl hover:shadow-red-500/5">
+                  <div className="w-36 h-36 md:w-44 md:h-44 bg-neutral-900 rounded-full mx-auto mb-8 border-2 border-white/10 group-hover:border-red-500/40 group-hover:scale-105 transition-all duration-500 overflow-hidden flex items-center justify-center relative">
                     {m.image ? (
                       <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-xs text-neutral-600">👤</div>
+                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-2xl text-neutral-600">👤</div>
                     )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
-                  <h4 className="font-bold text-white">{m.name}</h4>
-                  <p className="text-[10px] font-black text-red-500 uppercase tracking-widest mt-1">{m.role}</p>
-                  <p className="text-xs text-neutral-500 mt-4">{m.cluster}</p>
+                  <h4 className="text-xl font-bold text-white group-hover:text-red-500 transition-colors">{m.name}</h4>
+                  <p className="text-[10px] font-black text-red-500 uppercase tracking-[0.3em] mt-2">{m.role}</p>
+                  <p className="text-xs text-neutral-500 mt-4 font-medium">{m.cluster}</p>
                 </div>
               ))}
             </div>
