@@ -9,6 +9,9 @@ import ModelVisualizer from './components/ModelVisualizer';
 import NeuralScroll from './components/NeuralScroll';
 import OperatingModel from './components/OperatingModel';
 import CareerAccelerator from './components/CareerAccelerator';
+import KnowledgeEcosystem from './components/KnowledgeEcosystem';
+import ResearchRigor from './components/ResearchRigor';
+import Governance from './components/Governance';
 import Benefits from './components/Benefits';
 import Footer from './components/Footer';
 import { ACTIVITIES, ORG_CHART } from './constants';
@@ -38,11 +41,20 @@ const App: React.FC = () => {
         {/* Intelligence Architecture Section (Clusters) */}
         <Architecture />
 
+        {/* Knowledge Base & Academic Stack */}
+        <KnowledgeEcosystem />
+
         {/* Operating Model & Member Journey */}
         <OperatingModel />
 
+        {/* Research Rigor & Failure Wall */}
+        <ResearchRigor />
+
         {/* Career Growth & Roadmap */}
         <CareerAccelerator />
+
+        {/* Ethics & Governance Framework */}
+        <Governance />
 
         {/* Expected Benefits Section */}
         <Benefits />
