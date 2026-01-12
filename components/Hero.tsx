@@ -178,16 +178,16 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
           </motion.div>
         </div>
 
-        <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[250px] xl:w-[300px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
-          <motion.div whileHover={{ scale: 1.05 }} className="glass p-6 xl:p-8 rounded-[2.5rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
-             <div className="flex items-center gap-4 mb-4 xl:mb-6">
-                <div className="w-8 h-8 xl:w-10 xl:h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500">📈</div>
+        <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[180px] xl:w-[220px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
+          <motion.div whileHover={{ scale: 1.05 }} className="glass p-5 rounded-[2rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
+             <div className="flex items-center gap-3 mb-4 xl:mb-5">
+                <div className="w-6 h-6 xl:w-8 xl:h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-sm">📈</div>
                 <div>
-                   <p className="text-[9px] xl:text-[10px] font-black text-neutral-500 uppercase tracking-widest">Growth Velocity</p>
-                   <p className="text-xs xl:text-sm font-bold text-white">mAP Optimization</p>
+                   <p className="text-[8px] xl:text-[9px] font-black text-neutral-500 uppercase tracking-widest">Growth Velocity</p>
+                   <p className="text-[10px] xl:text-xs font-bold text-white">mAP Optimization</p>
                 </div>
              </div>
-             <svg className="w-full h-12 xl:h-16 stroke-blue-500 fill-none" viewBox="0 0 280 48">
+             <svg className="w-full h-10 xl:h-12 stroke-blue-500 fill-none" viewBox="0 0 280 48">
                 <path d="M0,40 L30,35 L60,42 L90,20 L120,25 L150,10 L180,15 L210,5 L240,12 L280,0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
           </motion.div>
