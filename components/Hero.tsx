@@ -1,9 +1,19 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Hero: React.FC = () => {
   const scrollToJoin = () => document.getElementById('governance')?.scrollIntoView({ behavior: 'smooth' });
   const scrollToArchitecture = () => document.getElementById('architecture')?.scrollIntoView({ behavior: 'smooth' });
+
+  // States for mini-animations
+  const [activeMatrixCell, setActiveMatrixCell] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveMatrixCell(Math.floor(Math.random() * 9));
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden mesh-bg">
@@ -12,13 +22,13 @@ const Hero: React.FC = () => {
       <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-600/10 blur-[150px] rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
       
       <div className="max-w-[1600px] mx-auto px-6 w-full relative z-10">
-        <div className="w-full lg:max-w-[65%] xl:max-w-[60%]">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-orange-600/30 text-orange-500 text-[10px] font-bold mb-10 uppercase tracking-[0.2em]">
+        <div className="w-full lg:max-w-[60%]">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-orange-600/30 text-orange-500 text-[10px] font-black mb-10 uppercase tracking-[0.2em]">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
             Official TensorFlow Student Society
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tighter mb-8 leading-[0.95] transition-all duration-700 lg:whitespace-nowrap">
+          <h1 className="text-[clamp(1.5rem,4.5vw,4.5rem)] font-extrabold tracking-tighter mb-8 leading-[1.1] transition-all duration-700 whitespace-nowrap overflow-hidden">
             AI on <span className="tf-gradient">Campus</span>
             <span className="text-white/40"> — KIIT</span> 
             <span className="text-white/20 italic font-light ml-2">chapter</span>
@@ -63,11 +73,28 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating Elements Area - Strategically placed to never overlap on 1440px+ screens */}
-      <div className="hidden lg:block absolute right-[2%] top-0 bottom-0 w-[35%] xl:w-[40%] pointer-events-none overflow-visible">
+      {/* Floating Elements Infrastructure - Managed Cluster */}
+      <div className="hidden lg:block absolute right-[2%] top-[10%] bottom-[10%] w-[35%] xl:w-[40%] pointer-events-none">
         
-        {/* Main Code Card - Vertical Center */}
-        <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[420px] xl:w-[500px] animate-float pointer-events-auto z-20">
+        {/* Artifact 1: Confusion Matrix Highlight - TOP LEFT CLUSTER */}
+        <div className="absolute top-[5%] left-[5%] w-[160px] animate-float pointer-events-auto z-30" style={{ animationDelay: '0.2s' }}>
+          <div className="glass p-4 rounded-2xl border-white/5 bg-black/40">
+             <p className="text-[8px] font-black uppercase text-neutral-600 tracking-widest mb-3">Confusion Matrix</p>
+             <div className="grid grid-cols-3 gap-1">
+               {Array.from({ length: 9 }).map((_, i) => (
+                 <div key={i} className={`h-8 rounded-sm transition-all duration-700 ${activeMatrixCell === i ? 'bg-orange-500 shadow-[0_0_15px_rgba(255,111,0,0.5)] scale-110' : 'bg-white/5'}`}></div>
+               ))}
+             </div>
+             <div className="mt-3 flex justify-between text-[7px] font-black uppercase text-neutral-700">
+               <span>P_01</span>
+               <span>P_02</span>
+               <span>P_03</span>
+             </div>
+          </div>
+        </div>
+
+        {/* Artifact 2: Main Code Card - CENTER CENTER CLUSTER */}
+        <div className="absolute top-1/2 -translate-y-1/2 left-[10%] w-[420px] animate-float pointer-events-auto z-20">
           <div className="glass rounded-[2rem] p-8 border-white/10 shadow-2xl backdrop-blur-3xl overflow-hidden relative">
             <div className="absolute top-0 right-0 p-4 opacity-10">
               <div className="w-24 h-24 border-[15px] border-orange-500 rounded-full"></div>
@@ -77,75 +104,81 @@ const Hero: React.FC = () => {
               <div className="w-3 h-3 rounded-full bg-yellow-500/30 border border-yellow-500/50"></div>
               <div className="w-3 h-3 rounded-full bg-green-500/30 border border-green-500/50"></div>
             </div>
-            <pre className="mono text-[10px] xl:text-[12px] leading-relaxed text-blue-300/90">
+            <pre className="mono text-[11px] leading-relaxed text-blue-300/90">
               <code>{`import tensorflow as tf
 
 @tf.function
 class NeuralCore(tf.Module):
   def __init__(self):
-    self.layer = tf.keras.layers.Dense(1024)
-    self.dropout = tf.keras.layers.Dropout(0.5)
-
+    self.dense = tf.keras.layers.Dense(1024)
+  
   def __call__(self, x):
-    return self.layer(x)
+    return tf.nn.relu(self.dense(x))
 
-# AI on Campus: Ready for Deployment
+# TF LAB Intelligence Hub
 hub = NeuralCore()
-print("KIIT_CLUSTER_READY")`}</code>
+print("SYS_READY_0x7F")`}</code>
             </pre>
           </div>
         </div>
 
-        {/* JSON API Response Card - Top Position */}
-        <div className="absolute top-[12%] right-[5%] w-[280px] xl:w-[320px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.5s' }}>
-          <div className="glass p-6 rounded-2xl border-white/5 shadow-xl bg-black/40">
-             <div className="flex items-center justify-between mb-4 pb-2 border-b border-white/5">
-                <span className="text-[8px] font-black uppercase text-blue-500 tracking-widest">Model Endpoint</span>
-                <span className="text-[8px] font-black text-green-500">200 OK</span>
-             </div>
-             <pre className="mono text-[9px] xl:text-[10px] text-green-400/80 leading-tight">
-{`{
-  "node": "KIIT_TF_LAB",
-  "status": "synchronized",
-  "accuracy": 0.9992,
-  "cluster": "dl-research",
-  "active_users": 524
-}`}
-             </pre>
-          </div>
-        </div>
-
-        {/* Analytics Card - Bottom Position */}
-        <div className="absolute bottom-[10%] right-[8%] w-[340px] xl:w-[380px] animate-float pointer-events-auto z-30" style={{ animationDelay: '1.2s' }}>
-           <div className="glass p-6 rounded-3xl border-white/10 shadow-2xl bg-gradient-to-br from-orange-500/5 to-transparent">
-              <div className="flex items-center gap-4 mb-6">
-                 <div className="w-10 h-10 rounded-xl bg-orange-600/20 flex items-center justify-center text-orange-500">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2 2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                 </div>
-                 <div>
-                    <p className="text-[9px] font-black text-neutral-500 uppercase tracking-widest">Layer Stats</p>
-                    <p className="text-xs font-bold text-white tracking-tight">Gradient Flow</p>
+        {/* Artifact 3: Data Ingestion Stream - MID LEFT CLUSTER */}
+        <div className="absolute top-[40%] right-[10%] w-[200px] animate-float pointer-events-auto z-10" style={{ animationDelay: '1.5s' }}>
+           <div className="glass p-4 rounded-xl border-white/5 overflow-hidden">
+              <div className="flex items-center justify-between mb-3">
+                 <span className="text-[8px] font-black uppercase text-blue-500 tracking-widest">Ingestion Pipeline</span>
+                 <div className="flex gap-1">
+                    <span className="w-1 h-1 rounded-full bg-blue-500 animate-ping"></span>
+                    <span className="w-1 h-1 rounded-full bg-blue-500"></span>
                  </div>
               </div>
-              <div className="flex items-end gap-1 h-16 mb-4 px-2">
-                 {[30, 50, 40, 80, 60, 25, 75, 50, 90, 35].map((h, i) => (
-                    <div key={i} className="flex-1 bg-white/5 rounded-t-sm relative group">
-                       <div 
-                         className="absolute bottom-0 left-0 right-0 bg-orange-600/40 group-hover:bg-orange-500 transition-all rounded-t-sm" 
-                         style={{ height: `${h}%` }}
-                       ></div>
-                    </div>
-                 ))}
-              </div>
-              <div className="flex justify-between text-[7px] font-black uppercase tracking-widest text-neutral-600">
-                 <span>Input</span>
-                 <span>Hidden_04</span>
-                 <span>Output</span>
+              <div className="h-10 relative bg-white/5 rounded-lg flex items-center overflow-hidden">
+                 <div className="absolute inset-0 flex justify-around items-center">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <div key={i} className="w-2 h-2 rounded-full bg-orange-500 animate-ingest-point" style={{ animationDelay: `${i * 0.4}s` }}></div>
+                    ))}
+                 </div>
+                 <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40"></div>
               </div>
            </div>
         </div>
 
+        {/* Artifact 5: Live Sparkline Growth - BOTTOM RIGHT CLUSTER */}
+        <div className="absolute bottom-[5%] right-[5%] w-[280px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
+          <div className="glass p-6 rounded-3xl border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
+             <div className="flex items-center gap-3 mb-4">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 text-xs">📈</div>
+                <div>
+                   <p className="text-[9px] font-black text-neutral-500 uppercase tracking-widest">Growth Velocity</p>
+                   <p className="text-xs font-bold text-white">mAP Optimization</p>
+                </div>
+             </div>
+             <svg className="w-full h-12 stroke-blue-500 fill-none" viewBox="0 0 280 48">
+                <path d="M0,40 L30,35 L60,42 L90,20 L120,25 L150,10 L180,15 L210,5 L240,12 L280,0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M0,40 L30,35 L60,42 L90,20 L120,25 L150,10 L180,15 L210,5 L240,12 L280,0 L280,48 L0,48 Z" fill="url(#blue-grad)" opacity="0.1" />
+                <defs>
+                   <linearGradient id="blue-grad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#3B82F6" />
+                      <stop offset="100%" stopColor="transparent" />
+                   </linearGradient>
+                </defs>
+             </svg>
+          </div>
+        </div>
+
       </div>
+
+      <style>{`
+        @keyframes ingest-point {
+          0% { transform: translateX(-50px); opacity: 0; scale: 0.5; }
+          20% { opacity: 1; scale: 1; }
+          80% { opacity: 1; scale: 1; }
+          100% { transform: translateX(250px); opacity: 0; scale: 0.5; }
+        }
+        .animate-ingest-point {
+          animation: ingest-point 2s linear infinite;
+        }
+      `}</style>
     </section>
   );
 };
