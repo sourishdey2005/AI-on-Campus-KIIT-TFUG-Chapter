@@ -6,6 +6,7 @@ import About from './components/About';
 import Architecture from './components/Architecture';
 import DomainMap from './components/DomainMap';
 import ModelVisualizer from './components/ModelVisualizer';
+import Benefits from './components/Benefits';
 import Footer from './components/Footer';
 import { ACTIVITIES, ORG_CHART } from './constants';
 
@@ -30,6 +31,9 @@ const App: React.FC = () => {
 
         {/* Intelligence Architecture Section (Clusters) */}
         <Architecture />
+
+        {/* Expected Benefits Section */}
+        <Benefits />
 
         {/* Activity Ecosystem */}
         <section className="py-32 bg-[#0a0a0a] relative overflow-hidden">
