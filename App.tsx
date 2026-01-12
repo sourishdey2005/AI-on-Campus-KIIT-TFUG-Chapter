@@ -29,9 +29,6 @@ const App: React.FC = () => {
   const openPortal = (view: string) => setActivePortal(view);
   const closePortal = () => setActivePortal(null);
 
-  // Helper to get member by role from our constants
-  const getMember = (role: string) => ORG_CHART.find(m => m.role === role);
-
   return (
     <div className="bg-[#050505] min-h-screen text-white selection:bg-orange-600 selection:text-white">
       <TrainingLoader />
@@ -208,20 +205,31 @@ const App: React.FC = () => {
             <div className="flex flex-col items-center">
               {/* Level 0: FIC */}
               <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center gap-4 justify-center">
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
                   <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">FIC</p>
                 </div>
-                <div className="w-px h-12 bg-gradient-to-b from-white/20 to-white/10"></div>
+                <div className="w-px h-10 bg-gradient-to-b from-white/20 to-white/10"></div>
+              </div>
+
+              {/* Level 0.5: Associate FIC */}
+              <div className="flex flex-col items-center">
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
+                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Associate FIC</p>
+                </div>
+                <div className="w-px h-10 bg-gradient-to-b from-white/10 to-white/5"></div>
+              </div>
+
+              {/* Level 0.7: Mentors */}
+              <div className="flex flex-col items-center">
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
+                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Mentors</p>
+                </div>
+                <div className="w-px h-10 bg-gradient-to-b from-white/10 to-white/5"></div>
               </div>
 
               {/* Level 1: President */}
               <div className="flex flex-col items-center">
-                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center gap-6 justify-center">
-                  {getMember('President')?.image && (
-                    <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0">
-                      <img src={getMember('President')?.image} alt="President" className="w-full h-full object-cover" />
-                    </div>
-                  )}
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center justify-center">
                   <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">President</p>
                 </div>
                 <div className="w-px h-12 bg-gradient-to-b from-white/10 to-white/5"></div>
@@ -236,12 +244,7 @@ const App: React.FC = () => {
                   {/* VP 1 */}
                   <div className="flex flex-col items-center pt-10 relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
-                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center gap-5 justify-center">
-                      {ORG_CHART.find(m => m.name === 'Rounak Banerjee')?.image && (
-                        <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shrink-0">
-                          <img src={ORG_CHART.find(m => m.name === 'Rounak Banerjee')?.image} alt="VP" className="w-full h-full object-cover" />
-                        </div>
-                      )}
+                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center justify-center">
                       <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
                     </div>
                     <div className="w-px h-12 bg-white/5"></div>
@@ -250,12 +253,7 @@ const App: React.FC = () => {
                   {/* VP 2 */}
                   <div className="flex flex-col items-center pt-10 relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
-                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center gap-5 justify-center">
-                      {ORG_CHART.find(m => m.name === 'Anusmita Sahu')?.image && (
-                        <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shrink-0">
-                          <img src={ORG_CHART.find(m => m.name === 'Anusmita Sahu')?.image} alt="VP" className="w-full h-full object-cover" />
-                        </div>
-                      )}
+                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center justify-center">
                       <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
                     </div>
                     <div className="w-px h-12 bg-white/5"></div>
