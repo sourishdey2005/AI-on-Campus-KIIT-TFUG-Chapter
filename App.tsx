@@ -29,6 +29,9 @@ const App: React.FC = () => {
   const openPortal = (view: string) => setActivePortal(view);
   const closePortal = () => setActivePortal(null);
 
+  // Helper to get member by role from our constants
+  const getMember = (role: string) => ORG_CHART.find(m => m.role === role);
+
   return (
     <div className="bg-[#050505] min-h-screen text-white selection:bg-orange-600 selection:text-white">
       <TrainingLoader />
@@ -197,31 +200,114 @@ const App: React.FC = () => {
           </div>
         </Section>
 
-        <Section className="py-32 bg-[#050505] border-t border-white/5">
+        {/* Structural Hierarchy Section */}
+        <Section className="py-32 bg-[#050505] border-t border-white/5 overflow-hidden">
           <div className="max-w-7xl mx-auto px-6 text-center">
             <h2 className="text-xs uppercase tracking-[0.5em] text-neutral-500 font-black mb-20">Structural Hierarchy</h2>
-            <div className="flex flex-col items-center gap-10">
-              {ORG_CHART.map((member, idx) => (
-                <motion.div 
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  viewport={{ once: true }}
-                  key={idx} 
-                  className="flex flex-col items-center relative group"
-                >
-                  {idx !== 0 && <div className="w-px h-10 bg-gradient-to-b from-white/20 to-transparent mb-4 group-hover:h-12 transition-all"></div>}
-                  <div className="px-12 py-6 glass rounded-2xl border-white/10 transition-all duration-500 hover:border-orange-500/50 min-w-[320px] group-hover:shadow-[0_0_30px_rgba(255,111,0,0.1)] flex items-center gap-6 justify-center">
-                    {member.image && (
-                      <div className="w-14 h-14 rounded-full overflow-hidden border border-white/10 shrink-0 shadow-lg">
-                        <img src={member.image} alt={member.role} className="w-full h-full object-cover" />
-                      </div>
-                    )}
-                    <div className="text-center">
-                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.5em]">{member.role}</p>
+            
+            <div className="flex flex-col items-center">
+              {/* Level 0: FIC */}
+              <div className="flex flex-col items-center">
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center gap-4 justify-center">
+                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">FIC</p>
+                </div>
+                <div className="w-px h-12 bg-gradient-to-b from-white/20 to-white/10"></div>
+              </div>
+
+              {/* Level 1: President */}
+              <div className="flex flex-col items-center">
+                <div className="px-10 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[280px] flex items-center gap-6 justify-center">
+                  {getMember('President')?.image && (
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-white/10 shrink-0">
+                      <img src={getMember('President')?.image} alt="President" className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">President</p>
+                </div>
+                <div className="w-px h-12 bg-gradient-to-b from-white/10 to-white/5"></div>
+              </div>
+
+              {/* Branching to Vice Presidents */}
+              <div className="relative w-full max-w-4xl">
+                {/* Horizontal Connector */}
+                <div className="absolute top-0 left-1/4 right-1/4 h-px bg-white/10"></div>
+                
+                <div className="grid grid-cols-2 gap-10 mt-0">
+                  {/* VP 1 */}
+                  <div className="flex flex-col items-center pt-10 relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
+                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center gap-5 justify-center">
+                      {ORG_CHART.find(m => m.name === 'Rounak Banerjee')?.image && (
+                        <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shrink-0">
+                          <img src={ORG_CHART.find(m => m.name === 'Rounak Banerjee')?.image} alt="VP" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
+                    </div>
+                    <div className="w-px h-12 bg-white/5"></div>
+                  </div>
+
+                  {/* VP 2 */}
+                  <div className="flex flex-col items-center pt-10 relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/10"></div>
+                    <div className="px-8 py-5 glass rounded-2xl border-white/10 hover:border-orange-500/50 transition-all min-w-[220px] flex items-center gap-5 justify-center">
+                      {ORG_CHART.find(m => m.name === 'Anusmita Sahu')?.image && (
+                        <div className="w-10 h-10 rounded-full overflow-hidden border border-white/10 shrink-0">
+                          <img src={ORG_CHART.find(m => m.name === 'Anusmita Sahu')?.image} alt="VP" className="w-full h-full object-cover" />
+                        </div>
+                      )}
+                      <p className="text-[10px] text-orange-500 font-black uppercase tracking-[0.4em]">Vice President</p>
+                    </div>
+                    <div className="w-px h-12 bg-white/5"></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Final Detailed Branches: Technical & Operational Execution */}
+              <div className="relative w-full max-w-5xl mt-4">
+                <div className="absolute top-0 left-[12.5%] right-[12.5%] h-px bg-white/5"></div>
+                
+                <div className="grid grid-cols-4 gap-6 pt-10">
+                  {/* Technical Branch */}
+                  <div className="flex flex-col items-center relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
+                    <div className="p-5 glass rounded-xl border-white/5 hover:border-blue-500/30 transition-all w-full text-center group">
+                      <p className="text-[8px] text-blue-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-blue-400 transition-colors">Research</p>
+                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Domain POCs</h6>
                     </div>
                   </div>
-                </motion.div>
-              ))}
+
+                  <div className="flex flex-col items-center relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
+                    <div className="p-5 glass rounded-xl border-white/5 hover:border-blue-500/30 transition-all w-full text-center group">
+                      <p className="text-[8px] text-blue-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-blue-400 transition-colors">Engineering</p>
+                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Technical Leads</h6>
+                    </div>
+                  </div>
+
+                  {/* Operational Branch */}
+                  <div className="flex flex-col items-center relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
+                    <div className="p-5 glass rounded-xl border-white/5 hover:border-purple-500/30 transition-all w-full text-center group">
+                      <p className="text-[8px] text-purple-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-purple-400 transition-colors">Management</p>
+                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Ops Coordinators</h6>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-center relative">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-10 bg-white/5"></div>
+                    <div className="p-5 glass rounded-xl border-white/5 hover:border-purple-500/30 transition-all w-full text-center group">
+                      <p className="text-[8px] text-purple-500 font-black uppercase tracking-[0.3em] mb-2 group-hover:text-purple-400 transition-colors">Creative</p>
+                      <h6 className="text-[10px] font-black text-white uppercase tracking-tighter">Media Leads</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom tag */}
+              <div className="mt-20 px-8 py-3 rounded-full glass border-white/5 text-[9px] font-black uppercase tracking-[0.5em] text-neutral-600">
+                Authorized Executive Structure
+              </div>
             </div>
           </div>
         </Section>
