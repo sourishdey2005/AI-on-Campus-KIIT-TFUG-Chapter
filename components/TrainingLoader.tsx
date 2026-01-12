@@ -13,7 +13,7 @@ const TrainingLoader: React.FC = () => {
     "System Ready."
   ];
 
-  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768209453/AI_on_campus_1_tjyhw8.jpg";
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
 
   useEffect(() => {
     let logIndex = 0;

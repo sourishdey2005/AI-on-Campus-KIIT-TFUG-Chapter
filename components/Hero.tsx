@@ -10,15 +10,10 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
   const shouldReduceMotion = useReducedMotion();
 
   // States for mini-animations
-  const [activeMatrixCell, setActiveMatrixCell] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveMatrixCell(Math.floor(Math.random() * 9));
-    }, 2000);
-
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
@@ -31,12 +26,11 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
 
     window.addEventListener('mousemove', handleMouseMove);
     return () => {
-      clearInterval(interval);
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
-  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768209453/AI_on_campus_1_tjyhw8.jpg";
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden mesh-bg group">
@@ -133,17 +127,32 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
 
       {/* Repositioned Artifacts - Visible on larger tablets and PCs */}
       <div className="hidden lg:block pointer-events-none">
-        <div className="absolute top-[20%] left-[3%] xl:left-[5%] w-[160px] xl:w-[180px] animate-float pointer-events-auto z-30" style={{ animationDelay: '0.2s' }}>
-          <motion.div whileHover={{ scale: 1.05 }} className="glass p-5 rounded-[2rem] border-white/5 bg-black/40 shadow-2xl">
-             <p className="text-[9px] font-black uppercase text-neutral-600 tracking-widest mb-4">Confusion Matrix</p>
-             <div className="grid grid-cols-3 gap-1.5">
-               {Array.from({ length: 9 }).map((_, i) => (
-                 <div key={i} className={`h-8 xl:h-10 rounded-lg transition-all duration-700 ${activeMatrixCell === i ? 'bg-orange-500 shadow-[0_0_20px_rgba(255,111,0,0.4)] scale-110' : 'bg-white/5'}`}></div>
-               ))}
+        {/* Artifact 1: Loss Function Snippet (Replaced Confusion Matrix) */}
+        <div className="absolute top-[20%] left-[3%] xl:left-[5%] w-[180px] xl:w-[220px] animate-float pointer-events-auto z-30" style={{ animationDelay: '0.2s' }}>
+          <motion.div whileHover={{ scale: 1.05 }} className="glass p-5 rounded-[2rem] border-white/5 bg-black/40 shadow-2xl relative overflow-hidden group/card">
+             <div className="flex justify-between items-center mb-4">
+               <p className="text-[9px] font-black uppercase text-neutral-600 tracking-widest">Loss Logic</p>
+               <div className="flex gap-1">
+                 <div className="w-1.5 h-1.5 rounded-full bg-red-500 opacity-40"></div>
+                 <div className="w-1.5 h-1.5 rounded-full bg-orange-500 opacity-40"></div>
+                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 opacity-40"></div>
+               </div>
+             </div>
+             <div className="bg-black/40 rounded-xl p-4 border border-white/5 mono text-[9px] leading-relaxed text-orange-500/80 group-hover/card:text-orange-500 transition-colors">
+                <code className="block">
+                  <span className="text-blue-400">def</span> <span className="text-white">cce_loss</span>(y_true, y_pred):<br/>
+                  &nbsp;&nbsp;eps = <span className="text-purple-400">1e-15</span><br/>
+                  &nbsp;&nbsp;y_pred = clip(y_pred, eps)<br/>
+                  &nbsp;&nbsp;<span className="text-blue-400">return</span> -sum(y_true * log(y_pred))
+                </code>
+             </div>
+             <div className="absolute -right-4 -bottom-4 opacity-5 group-hover/card:opacity-10 transition-opacity">
+               <div className="w-16 h-16 border-4 border-white rounded-full"></div>
              </div>
           </motion.div>
         </div>
 
+        {/* Artifact 5: Live Sparkline Growth (Right side) */}
         <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[250px] xl:w-[300px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
           <motion.div whileHover={{ scale: 1.05 }} className="glass p-6 xl:p-8 rounded-[2.5rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
              <div className="flex items-center gap-4 mb-4 xl:mb-6">
