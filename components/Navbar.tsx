@@ -22,6 +22,8 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
   ];
 
   const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
+  const tensorflowLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217422/Tensorflow_ddxbsg.jpg";
+  const kiitLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217413/KIIT_c2jkgi.jpg";
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -38,37 +40,53 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
         : 'bg-transparent py-6 md:py-8'
       }`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3 md:gap-4 group">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg">
-              <img src={logoUrl} alt="AI Guild on Campus Logo" className="w-full h-full object-contain" />
+          <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
+            <a href="#" className="flex items-center gap-2 md:gap-4 group">
+              <div className="w-9 h-9 md:w-11 md:h-11 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg">
+                <img src={logoUrl} alt="AI Guild Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="hidden lg:block">
+                <h1 className="text-base md:text-lg font-black tracking-tighter leading-none">AI Guild on Campus</h1>
+                <p className="text-[7px] md:text-[8px] uppercase tracking-[0.4em] text-neutral-500 font-bold group-hover:text-orange-500 transition-colors mt-1">KIIT CHAPTER</p>
+              </div>
+            </a>
+            
+            <div className="w-px h-6 md:h-8 bg-white/10 hidden sm:block"></div>
+            
+            <div className="flex items-center gap-2 md:gap-3">
+              {/* KIIT Logo */}
+              <div className="w-9 h-9 md:w-11 md:h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-lg group">
+                <img src={kiitLogoUrl} alt="KIIT University Logo" className="w-full h-full object-contain p-0.5" />
+              </div>
+
+              {/* TensorFlow Logo */}
+              <div className="w-9 h-9 md:w-11 md:h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-lg group">
+                <img src={tensorflowLogoUrl} alt="TensorFlow Logo" className="w-full h-full object-contain p-0.5" />
+              </div>
             </div>
-            <div>
-              <h1 className="text-lg md:text-xl font-black tracking-tighter">AI Guild on Campus</h1>
-              <p className="text-[8px] md:text-[9px] uppercase tracking-[0.4em] text-neutral-500 font-bold group-hover:text-orange-500 transition-colors">KIIT CHAPTER</p>
-            </div>
-          </a>
+          </div>
           
-          <div className="hidden md:flex items-center gap-10">
-            <div className="flex items-center gap-6 lg:gap-8 text-[11px] font-black uppercase tracking-[0.2em] text-neutral-500">
+          <div className="hidden md:flex items-center gap-6 lg:gap-10">
+            <div className="flex items-center gap-4 lg:gap-6 text-[10px] lg:text-[11px] font-black uppercase tracking-[0.2em] text-neutral-500">
               {navLinks.map((link) => (
                 <a 
                   key={link.name}
                   href={link.href} 
-                  className="hover:text-white transition-all relative group py-2 px-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10"
+                  className="hover:text-white transition-all relative group py-2 px-2 lg:px-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10"
                 >
                   {link.name}
                 </a>
               ))}
               <button 
                 onClick={() => onOpenPortal('wiki')}
-                className="hover:text-white transition-all py-2 px-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10"
+                className="hover:text-white transition-all py-2 px-2 lg:px-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10"
               >
                 WIKI
               </button>
             </div>
             <button 
               onClick={() => onOpenPortal('recruitment')}
-              className="px-6 py-2.5 glass border-white/10 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-600 hover:border-orange-500 transition-all shadow-xl"
+              className="px-5 lg:px-6 py-2.5 glass border-white/10 text-white rounded-xl text-[9px] lg:text-[10px] font-black uppercase tracking-widest hover:bg-orange-600 hover:border-orange-500 transition-all shadow-xl"
             >
               Join Society
             </button>
@@ -88,7 +106,6 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div

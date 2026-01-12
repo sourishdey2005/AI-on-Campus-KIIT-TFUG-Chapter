@@ -31,6 +31,8 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
   }, []);
 
   const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
+  const tensorflowUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217422/Tensorflow_ddxbsg.jpg";
+  const kiitUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217413/KIIT_c2jkgi.jpg";
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden mesh-bg group">
@@ -54,24 +56,50 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-center"
         >
-          {/* Centralized High-Impact Logo - Scaled for Mobile */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ 
-              duration: 1.2, 
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.2
-            }}
-            className="w-40 h-40 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-[2rem] md:rounded-[3rem] glass border-white/10 p-3 md:p-4 mb-8 md:mb-12 overflow-hidden shadow-[0_0_80px_rgba(255,111,0,0.15)] group-hover:shadow-[0_0_120px_rgba(255,111,0,0.25)] transition-all duration-1000 relative bg-white/[0.02]"
-          >
-            <img
-              src={logoUrl}
-              alt="AI Guild on Campus Official Logo"
-              className="w-full h-full object-contain"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-          </motion.div>
+          {/* Triple Institutional Branding Logos */}
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10 lg:gap-12 mb-8 md:mb-12">
+            {/* KIIT Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: -20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-[1.5rem] md:rounded-[2rem] glass border-white/10 overflow-hidden shadow-2xl relative bg-white"
+            >
+              <img
+                src={kiitUrl}
+                alt="KIIT University Logo"
+                className="w-full h-full object-contain p-2 md:p-4"
+              />
+            </motion.div>
+
+            {/* AI Guild Logo (Central Focus) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.1 }}
+              className="w-32 h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-[2rem] md:rounded-[3rem] glass border-white/10 p-4 overflow-hidden shadow-[0_0_80px_rgba(255,111,0,0.15)] relative bg-white/[0.02] z-20"
+            >
+              <img
+                src={logoUrl}
+                alt="AI Guild Logo"
+                className="w-full h-full object-contain"
+              />
+            </motion.div>
+
+            {/* TensorFlow Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: 20 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="w-24 h-24 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-[1.5rem] md:rounded-[2rem] glass border-white/10 overflow-hidden shadow-2xl relative bg-white"
+            >
+              <img
+                src={tensorflowUrl}
+                alt="TensorFlow Official Logo"
+                className="w-full h-full object-contain p-2 md:p-4"
+              />
+            </motion.div>
+          </div>
 
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border-orange-600/30 text-orange-500 text-[9px] md:text-[10px] font-black mb-6 md:mb-10 uppercase tracking-[0.2em]">
             <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
@@ -125,10 +153,8 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
         </motion.div>
       </div>
 
-      {/* Repositioned Artifacts - Visible on larger tablets and PCs */}
       <div className="hidden lg:block pointer-events-none">
-        {/* Artifact 1: Loss Function Snippet (Replaced Confusion Matrix) */}
-        <div className="absolute top-[20%] left-[3%] xl:left-[5%] w-[180px] xl:w-[220px] animate-float pointer-events-auto z-30" style={{ animationDelay: '0.2s' }}>
+        <div className="absolute top-[25%] left-[3%] xl:left-[5%] w-[180px] xl:w-[220px] animate-float pointer-events-auto z-20" style={{ animationDelay: '0.2s' }}>
           <motion.div whileHover={{ scale: 1.05 }} className="glass p-5 rounded-[2rem] border-white/5 bg-black/40 shadow-2xl relative overflow-hidden group/card">
              <div className="flex justify-between items-center mb-4">
                <p className="text-[9px] font-black uppercase text-neutral-600 tracking-widest">Loss Logic</p>
@@ -152,7 +178,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
           </motion.div>
         </div>
 
-        {/* Artifact 5: Live Sparkline Growth (Right side) */}
         <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[250px] xl:w-[300px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
           <motion.div whileHover={{ scale: 1.05 }} className="glass p-6 xl:p-8 rounded-[2.5rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
              <div className="flex items-center gap-4 mb-4 xl:mb-6">
