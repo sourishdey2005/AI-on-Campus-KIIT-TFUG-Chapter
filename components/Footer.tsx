@@ -73,6 +73,14 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
             >
               KIIT University
             </a>
+            <a 
+              href="https://www.linkedin.com/in/sourish-dey-20b170206/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-neutral-400 hover:text-white transition-all duration-300 flex items-center gap-1 group/author"
+            >
+              Made by <span className="group-hover/author:text-orange-500 transition-colors">Sourish Dey</span>
+            </a>
           </div>
         </div>
       </div>

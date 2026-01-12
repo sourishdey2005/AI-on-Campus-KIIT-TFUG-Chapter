@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 
 interface SectionProps {
   children: React.ReactNode;
@@ -11,7 +11,8 @@ interface SectionProps {
 const Section: React.FC<SectionProps> = ({ children, id, className = "" }) => {
   const shouldReduceMotion = useReducedMotion();
 
-  const variants = {
+  // Define variants with the explicit 'Variants' type to ensure 'ease' array is correctly interpreted as a cubic-bezier tuple.
+  const variants: Variants = {
     hidden: { 
       opacity: 0, 
       y: shouldReduceMotion ? 0 : 30 
