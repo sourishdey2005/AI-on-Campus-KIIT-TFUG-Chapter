@@ -19,6 +19,7 @@ import CommunityTrustVisualizer from './components/CommunityTrustVisualizer';
 import InstitutionalEndorsement from './components/InstitutionalEndorsement';
 import Section from './components/Section';
 import TrainingLoader from './components/TrainingLoader';
+import Chatbot from './components/Chatbot';
 import { ACTIVITIES, ORG_CHART } from './constants';
 import { motion } from 'framer-motion';
 
@@ -229,6 +230,8 @@ const App: React.FC = () => {
       {activePortal && (
         <Portal view={activePortal} onClose={closePortal} />
       )}
+
+      <Chatbot />
     </div>
   );
 };
