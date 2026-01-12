@@ -29,7 +29,7 @@ import { motion } from 'framer-motion';
  */
 
 function HierarchyNode({ label, color, size = 'normal' }: { label: string; color: 'orange' | 'blue' | 'purple'; size?: 'normal' | 'small' }) {
-  const styles = {
+  const styles: Record<string, string> = {
     orange: 'text-orange-500 border-orange-500/30 hover:border-orange-500/60',
     blue: 'text-blue-500 border-blue-500/30 hover:border-blue-500/60',
     purple: 'text-purple-500 border-purple-500/30 hover:border-purple-500/60'
@@ -51,7 +51,6 @@ function Connector({ length }: { length: string }) {
 }
 
 function ExecutionBranch({ title, label, color, subs }: { title: string; label: string; color: 'blue' | 'purple'; subs: string[] }) {
-  // Use explicit class names for Tailwind JIT compatibility
   const colorText = color === 'blue' ? 'text-blue-500' : 'text-purple-500';
   const colorBorder = color === 'blue' ? 'border-blue-500/20 hover:border-blue-500/50' : 'border-purple-500/20 hover:border-purple-500/50';
 

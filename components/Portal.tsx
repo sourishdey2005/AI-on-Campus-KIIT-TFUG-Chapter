@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface PortalProps {
   view: string;
@@ -6,6 +7,76 @@ interface PortalProps {
 }
 
 const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
+  const [memberIndex, setMemberIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  const members = [
+    { 
+      name: 'Sunil Kumar Sawant', 
+      role: 'Faculty In-Charge', 
+      cluster: 'Oversight', 
+      bio: 'Directing the academic and research initiatives of the AI Guild with a focus on institutional alignment.',
+      image: null 
+    },
+    { 
+      name: 'Sourish Dey', 
+      role: 'President', 
+      cluster: 'Strategy', 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg', 
+      bio: 'Strategic lead for TensorFlow community integration and high-tier research orchestration.' 
+    },
+    { 
+      name: 'Rounak Banerjee', 
+      role: 'Vice President', 
+      cluster: 'Technical Ops', 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg', 
+      bio: 'Managing technical domain clusters, engineering pipelines, and hardware laboratory logistics.' 
+    },
+    { 
+      name: 'Anusmita Sahu', 
+      role: 'Vice President', 
+      cluster: 'Executive Ops', 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg', 
+      bio: 'Leading operational logistics, community growth strategies, and corporate relationship management.' 
+    }
+  ];
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction > 0 ? 45 : -45
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 500 : -500,
+      opacity: 0,
+      scale: 0.9,
+      rotateY: direction < 0 ? 45 : -45,
+      transition: {
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    })
+  };
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setMemberIndex((prev) => (prev + newDirection + members.length) % members.length);
+  };
+
   const renderContent = () => {
     switch (view) {
       case 'guidelines':
@@ -94,38 +165,77 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
         );
       case 'directory':
         return (
-          <div className="space-y-10 animate-in fade-in slide-in-from-bottom-10 duration-500 text-center">
-            <header className="pb-8">
-              <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">Society Census</span>
-              <h2 className="text-5xl font-black tracking-tighter mb-4">Member Directory</h2>
-              <p className="text-neutral-500 text-sm max-w-xl mx-auto">The executive leadership of the AI Guild KIIT Chapter. Excellence in neural research and operational deployment.</p>
+          <div className="h-full flex flex-col items-center justify-center animate-in fade-in duration-700">
+            <header className="text-center mb-12">
+              <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.5em] mb-2 block">Executive Board</span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">Member Directory</h2>
+              <p className="text-neutral-500 text-sm max-w-xl mx-auto">Revolving showcase of the AI Guild's strategic leadership.</p>
             </header>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-10 mt-12">
-              {[
-                { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight', bio: 'Directing the academic and research initiatives of the AI Guild.' },
-                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg', bio: 'Strategic lead for TensorFlow community integration and research.' },
-                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Technical Ops', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg', bio: 'Orchestrating technical domain clusters and engineering pipelines.' },
-                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Executive Ops', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg', bio: 'Managing operational logistics and community growth strategies.' }
-              ].map((m, i) => (
-                <div key={i} className="glass p-12 rounded-[4rem] border-white/5 text-center group hover:border-red-500/40 transition-all duration-700 shadow-2xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-b from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  
-                  <div className="w-48 h-48 md:w-60 md:h-60 bg-neutral-900 rounded-[3rem] mx-auto mb-10 border-2 border-white/10 group-hover:border-red-500/60 group-hover:scale-105 group-hover:-rotate-3 transition-all duration-700 overflow-hidden flex items-center justify-center relative z-10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                    {m.image ? (
-                      <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-5xl text-neutral-700 font-black">?</div>
-                    )}
-                  </div>
 
-                  <div className="relative z-10">
-                    <h4 className="text-2xl font-black text-white group-hover:text-red-500 transition-colors tracking-tight">{m.name}</h4>
-                    <p className="text-[11px] font-black text-red-500 uppercase tracking-[0.4em] mt-3">{m.role}</p>
-                    <div className="w-12 h-1 bg-white/5 mx-auto my-6 group-hover:w-20 group-hover:bg-red-500/40 transition-all duration-500"></div>
-                    <p className="text-[11px] text-neutral-400 font-medium leading-relaxed max-w-[200px] mx-auto">{m.bio}</p>
-                    <p className="text-[9px] text-neutral-600 mt-6 font-black uppercase tracking-widest">{m.cluster}</p>
+            <div className="relative w-full max-w-4xl h-[600px] flex items-center justify-center perspective-1000">
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.div
+                  key={memberIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="absolute inset-0 flex flex-col items-center justify-center"
+                >
+                  <div className="glass p-12 md:p-16 rounded-[4rem] border-white/10 text-center shadow-2xl relative overflow-hidden w-full max-w-2xl">
+                    <div className="absolute inset-0 bg-gradient-to-b from-red-600/5 to-transparent opacity-50"></div>
+                    
+                    <div className="w-56 h-56 md:w-72 md:h-72 bg-neutral-900 rounded-[3rem] mx-auto mb-10 border-2 border-white/10 shadow-[0_0_80px_rgba(0,0,0,0.5)] overflow-hidden flex items-center justify-center relative z-10">
+                      {members[memberIndex].image ? (
+                        <img src={members[memberIndex].image!} alt={members[memberIndex].name} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-6xl text-neutral-700 font-black">?</div>
+                      )}
+                    </div>
+
+                    <div className="relative z-10">
+                      <h4 className="text-3xl md:text-4xl font-black text-white tracking-tight">{members[memberIndex].name}</h4>
+                      <p className="text-[12px] font-black text-red-500 uppercase tracking-[0.5em] mt-3">{members[memberIndex].role}</p>
+                      <div className="w-16 h-1 bg-red-500/40 mx-auto my-8"></div>
+                      <p className="text-sm md:text-base text-neutral-400 font-medium leading-relaxed max-w-[400px] mx-auto mb-8">
+                        {members[memberIndex].bio}
+                      </p>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 glass border-white/5 rounded-xl">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                        <span className="text-[10px] text-neutral-300 font-black uppercase tracking-widest">{members[memberIndex].cluster}</span>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Controls */}
+              <button 
+                onClick={() => paginate(-1)}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-16 h-16 glass rounded-full flex items-center justify-center text-neutral-500 hover:text-white hover:bg-white/5 border-white/10 transition-all z-20"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+              </button>
+              <button 
+                onClick={() => paginate(1)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-16 h-16 glass rounded-full flex items-center justify-center text-neutral-500 hover:text-white hover:bg-white/5 border-white/10 transition-all z-20"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+              </button>
+            </div>
+
+            {/* Pagination Indicators */}
+            <div className="flex gap-4 mt-8">
+              {members.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setDirection(i > memberIndex ? 1 : -1);
+                    setMemberIndex(i);
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${i === memberIndex ? 'w-12 bg-red-500' : 'w-4 bg-white/10 hover:bg-white/20'}`}
+                />
               ))}
             </div>
           </div>
