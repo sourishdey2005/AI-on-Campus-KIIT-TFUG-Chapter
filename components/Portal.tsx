@@ -97,27 +97,34 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-10 duration-500 text-center">
             <header className="pb-8">
               <span className="text-red-500 text-[10px] font-black uppercase tracking-[0.3em] mb-2 block">Society Census</span>
-              <h2 className="text-4xl font-black tracking-tighter">Member Directory</h2>
+              <h2 className="text-5xl font-black tracking-tighter mb-4">Member Directory</h2>
+              <p className="text-neutral-500 text-sm max-w-xl mx-auto">The executive leadership of the AI Guild KIIT Chapter. Excellence in neural research and operational deployment.</p>
             </header>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-10 mt-12">
               {[
-                { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight' },
-                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
-                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },
-                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' }
+                { name: 'Sunil Kumar Sawant', role: 'Faculty In-Charge', cluster: 'Oversight', bio: 'Directing the academic and research initiatives of the AI Guild.' },
+                { name: 'Sourish Dey', role: 'President', cluster: 'Strategy', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg', bio: 'Strategic lead for TensorFlow community integration and research.' },
+                { name: 'Rounak Banerjee', role: 'Vice President', cluster: 'Technical Ops', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg', bio: 'Orchestrating technical domain clusters and engineering pipelines.' },
+                { name: 'Anusmita Sahu', role: 'Vice President', cluster: 'Executive Ops', image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg', bio: 'Managing operational logistics and community growth strategies.' }
               ].map((m, i) => (
-                <div key={i} className="glass p-10 rounded-[3rem] border-white/5 text-center group hover:border-red-500/30 transition-all shadow-xl hover:shadow-red-500/5">
-                  <div className="w-36 h-36 md:w-44 md:h-44 bg-neutral-900 rounded-full mx-auto mb-8 border-2 border-white/10 group-hover:border-red-500/40 group-hover:scale-105 transition-all duration-500 overflow-hidden flex items-center justify-center relative">
+                <div key={i} className="glass p-12 rounded-[4rem] border-white/5 text-center group hover:border-red-500/40 transition-all duration-700 shadow-2xl relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-b from-red-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  
+                  <div className="w-48 h-48 md:w-60 md:h-60 bg-neutral-900 rounded-[3rem] mx-auto mb-10 border-2 border-white/10 group-hover:border-red-500/60 group-hover:scale-105 group-hover:-rotate-3 transition-all duration-700 overflow-hidden flex items-center justify-center relative z-10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
                     {m.image ? (
                       <img src={m.image} alt={m.name} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-2xl text-neutral-600">👤</div>
+                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-5xl text-neutral-700 font-black">?</div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
-                  <h4 className="text-xl font-bold text-white group-hover:text-red-500 transition-colors">{m.name}</h4>
-                  <p className="text-[10px] font-black text-red-500 uppercase tracking-[0.3em] mt-2">{m.role}</p>
-                  <p className="text-xs text-neutral-500 mt-4 font-medium">{m.cluster}</p>
+
+                  <div className="relative z-10">
+                    <h4 className="text-2xl font-black text-white group-hover:text-red-500 transition-colors tracking-tight">{m.name}</h4>
+                    <p className="text-[11px] font-black text-red-500 uppercase tracking-[0.4em] mt-3">{m.role}</p>
+                    <div className="w-12 h-1 bg-white/5 mx-auto my-6 group-hover:w-20 group-hover:bg-red-500/40 transition-all duration-500"></div>
+                    <p className="text-[11px] text-neutral-400 font-medium leading-relaxed max-w-[200px] mx-auto">{m.bio}</p>
+                    <p className="text-[9px] text-neutral-600 mt-6 font-black uppercase tracking-widest">{m.cluster}</p>
+                  </div>
                 </div>
               ))}
             </div>
