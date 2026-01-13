@@ -139,10 +139,10 @@ export const ACTIVITIES: Activity[] = [
 
 export const ORG_CHART: TeamMember[] = [
   { 
-    name: 'Sunil Kumar Sawant', 
+    name: 'Sricheta Parui', 
     role: 'FIC', 
     level: 0, 
-    image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768280121/601aa1bc-365a-41fb-b09c-201cf73b1dee_s78oyp.jpg' 
+    image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768295442/ea3b8408-db41-434c-b0e7-302863f25117_juc6mp.jpg' 
   },
   { name: 'Sourish Dey', role: 'President', level: 1, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
   { name: 'Rounak Banerjee', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },

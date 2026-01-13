@@ -14,11 +14,11 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
 
   const members = [
     { 
-      name: 'Sunil Kumar Sawant', 
+      name: 'Sricheta Parui', 
       role: 'Faculty In-Charge', 
       cluster: 'Oversight', 
       bio: 'Directing the academic and research initiatives of the AI Guild with a focus on institutional alignment.',
-      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768280121/601aa1bc-365a-41fb-b09c-201cf73b1dee_s78oyp.jpg' 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768295442/ea3b8408-db41-434c-b0e7-302863f25117_juc6mp.jpg' 
     },
     { 
       name: 'Sourish Dey', 
