@@ -142,7 +142,7 @@ export const ORG_CHART: TeamMember[] = [
     name: 'Sricheta Parui', 
     role: 'FIC', 
     level: 0, 
-    image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768295442/ea3b8408-db41-434c-b0e7-302863f25117_juc6mp.jpg' 
+    image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768302014/92bfeef6-9b0c-45e7-aab9-c1e43ac815fa_w2462h.jpg' 
   },
   { name: 'Sourish Dey', role: 'President', level: 1, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
   { name: 'Rounak Banerjee', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },

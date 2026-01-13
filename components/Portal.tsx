@@ -18,7 +18,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
       role: 'Faculty In-Charge', 
       cluster: 'Oversight', 
       bio: 'Directing the academic and research initiatives of the AI Guild with a focus on institutional alignment.',
-      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768295442/ea3b8408-db41-434c-b0e7-302863f25117_juc6mp.jpg' 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768302014/92bfeef6-9b0c-45e7-aab9-c1e43ac815fa_w2462h.jpg' 
     },
     { 
       name: 'Sourish Dey', 
