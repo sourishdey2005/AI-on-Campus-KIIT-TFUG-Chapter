@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { saveMessage, getMessages, clearMessages } from '../db';
 
 const CHAT_DATA = [
   { q: "What is AI Guild on Campus?", a: "AI Guild on Campus – KIIT Chapter is the official TensorFlow Student Society dedicated to advanced ML research, engineering, and deployment." },
@@ -42,14 +43,35 @@ const Chatbot: React.FC = () => {
   const [search, setSearch] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Load history from DB on mount
+  useEffect(() => {
+    getMessages().then(history => {
+      if (history && history.length > 0) {
+        setMessages(history);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   }, [messages, isOpen, isMinimized]);
 
-  const handleQuestion = (q: string, a: string) => {
-    setMessages(prev => [...prev, { role: 'user', text: q }, { role: 'bot', text: a }]);
+  const handleQuestion = async (q: string, a: string) => {
+    const userMsg = { role: 'user' as const, text: q, timestamp: Date.now() };
+    const botMsg = { role: 'bot' as const, text: a, timestamp: Date.now() + 1 };
+    
+    setMessages(prev => [...prev, userMsg, botMsg]);
+    
+    // Persist to database
+    await saveMessage(userMsg);
+    await saveMessage(botMsg);
+  };
+
+  const handleClearHistory = async () => {
+    await clearMessages();
+    setMessages([]);
   };
 
   const filteredQuestions = CHAT_DATA.filter(item => 
@@ -76,7 +98,7 @@ const Chatbot: React.FC = () => {
                   <h4 className="text-sm font-black text-white tracking-tighter uppercase">AI Guild Hub</h4>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                    <span className="text-[8px] font-black text-neutral-500 uppercase tracking-widest">Core Synchronized</span>
+                    <span className="text-[8px] font-black text-neutral-500 uppercase tracking-widest">Database Linked</span>
                   </div>
                 </div>
               </div>
@@ -85,17 +107,26 @@ const Chatbot: React.FC = () => {
                   {isExpanded ? '↙️' : '↗️'}
                 </button>
                 <button onClick={() => setIsMinimized(true)} className="p-2 text-neutral-500 hover:text-white transition-colors">➖</button>
-                <button onClick={() => { setIsOpen(false); setMessages([]); }} className="p-2 text-neutral-500 hover:text-white transition-colors">✕</button>
+                <button onClick={() => { setIsOpen(false); }} className="p-2 text-neutral-500 hover:text-white transition-colors">✕</button>
               </div>
             </div>
 
             {/* Chat Area */}
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 space-y-4 no-scrollbar">
-              {messages.length === 0 && (
+              {messages.length === 0 ? (
                 <div className="text-center py-8">
                   <p className="text-xs font-medium text-neutral-500 leading-relaxed italic">
                     "Welcome to the AI Guild Intelligence Interface. Select a protocol to begin interrogation."
                   </p>
+                </div>
+              ) : (
+                <div className="flex justify-center mb-4">
+                  <button 
+                    onClick={handleClearHistory}
+                    className="text-[8px] font-black uppercase tracking-widest text-neutral-600 hover:text-red-500 transition-colors"
+                  >
+                    Clear Neural Cache
+                  </button>
                 </div>
               )}
               {messages.map((msg, i) => (
@@ -161,7 +192,7 @@ const Chatbot: React.FC = () => {
           whileTap={{ scale: 0.95 }}
           onClick={() => {
             if (!isOpen) { setIsOpen(true); setIsMinimized(false); }
-            else { setIsOpen(false); setMessages([]); }
+            else { setIsOpen(false); }
           }}
           className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center text-3xl shadow-[0_0_40px_rgba(255,111,0,0.4)] transition-all hover:bg-orange-500 relative z-[201]"
         >

@@ -26,7 +26,6 @@ import { motion } from 'framer-motion';
 
 /** 
  * UI Helpers for the Hierarchy Tree
- * Defined as functions to benefit from hoisting and ensure no "Cannot access before initialization" errors.
  */
 
 function HierarchyNode({ label, color, size = 'normal' }: { label: string; color: 'orange' | 'blue' | 'purple'; size?: 'normal' | 'small' }) {
@@ -92,7 +91,7 @@ const App: React.FC = () => {
       <main>
         <Hero onOpenPortal={openPortal} />
 
-        {/* Core Philosophy Moving Ribbon */}
+        {/* Start of continuous ribbon distribution */}
         <MovingRibbon />
         
         <Section id="about">
@@ -102,6 +101,8 @@ const App: React.FC = () => {
         <Section>
           <DomainMap />
         </Section>
+
+        <MovingRibbon />
 
         <Section>
           <ModelVisualizer />
@@ -119,6 +120,8 @@ const App: React.FC = () => {
           <IntelligenceVisualizer />
         </Section>
 
+        <MovingRibbon />
+
         <Section>
           <KnowledgeEcosystem />
         </Section>
@@ -131,6 +134,8 @@ const App: React.FC = () => {
           <CommunityTrustVisualizer />
         </Section>
 
+        <MovingRibbon />
+
         <Section>
           <ResearchRigor />
         </Section>
@@ -138,6 +143,8 @@ const App: React.FC = () => {
         <Section>
           <CareerAccelerator />
         </Section>
+
+        <MovingRibbon />
 
         <Section>
           <Governance />
@@ -310,6 +317,8 @@ const App: React.FC = () => {
             </div>
           </div>
         </Section>
+
+        <MovingRibbon />
 
         <Section>
           <InstitutionalEndorsement />
