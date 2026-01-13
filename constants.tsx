@@ -52,6 +52,7 @@ export const CLUSTERS: Cluster[] = [
     domains: [
       { name: 'Web-ML & Browser Intelligence', details: 'Deploying high-performance models via TF.js with WebGPU acceleration. Project Idea: A browser-based real-time video background removal tool optimized for campus students on low-end laptops.' },
       { name: 'Mobile AI & Efficient Computing', details: 'Optimizing inference via Quantization-Aware Training (QAT). Project Idea: Building "KIIT-Scan," a mobile app that uses an on-device OCR model to digitize handwritten student notes in Odia and English.' },
+      { name: 'Mobile AI & Efficient Computing', details: 'Optimizing inference via Quantization-Aware Training (QAT). Project Idea: Building "KIIT-Scan," a mobile app that uses an on-device OCR model to digitize handwritten student notes in Odia and English.' },
       { name: 'Voice & Conversational UI', details: 'Building low-latency agents with streaming ASR and TTS. Project Idea: A voice-activated "Campus Navigator" for visually impaired visitors that provides turn-by-turn directions via localized audio cues.' },
       { name: 'XR & Spatial Computing', details: 'Integrating spatial AI for hand-tracking and scene understanding. Project Idea: An AR "Anatomy Lab" where medical students can interact with 3D organs overlaid on physical mannequins using Meta Quest 3.' }
     ]
@@ -144,7 +145,7 @@ export const ORG_CHART: TeamMember[] = [
     level: 0, 
     image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768302014/92bfeef6-9b0c-45e7-aab9-c1e43ac815fa_w2462h.jpg' 
   },
-  { name: 'Sourish Dey', role: 'President', level: 1, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
+  { name: 'Sourish Dey', role: 'President', level: 1, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768303149/b9b6bbcf-bdc8-467f-b947-db6f8524d537_c2wstk.jpg' },
   { name: 'Rounak Banerjee', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },
   { name: 'Anusmita Sahu', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' },
   { name: 'Domain POCs & coordinators', role: 'Technical Execution', level: 3 }

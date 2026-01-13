@@ -24,7 +24,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
       name: 'Sourish Dey', 
       role: 'President', 
       cluster: 'Strategy', 
-      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg', 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768303149/b9b6bbcf-bdc8-467f-b947-db6f8524d537_c2wstk.jpg', 
       bio: 'Strategic lead for TensorFlow community integration and high-tier research orchestration.' 
     },
     { 
