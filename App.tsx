@@ -20,6 +20,7 @@ import InstitutionalEndorsement from './components/InstitutionalEndorsement';
 import Section from './components/Section';
 import TrainingLoader from './components/TrainingLoader';
 import Chatbot from './components/Chatbot';
+import MovingRibbon from './components/MovingRibbon';
 import { ACTIVITIES } from './constants';
 import { motion } from 'framer-motion';
 
@@ -90,6 +91,9 @@ const App: React.FC = () => {
       
       <main>
         <Hero onOpenPortal={openPortal} />
+
+        {/* Core Philosophy Moving Ribbon */}
+        <MovingRibbon />
         
         <Section id="about">
           <About />
