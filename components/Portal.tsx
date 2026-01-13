@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+// Added Variants to import list
+import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { LEADERSHIP_TEAM } from '../constants';
 
 interface PortalProps {
   view: string;
@@ -41,7 +43,8 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
     }
   ];
 
-  const slideVariants = {
+  // Explicitly typed as Variants to fix string-to-literal assignment error for 'type: "spring"'
+  const slideVariants: Variants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
@@ -80,6 +83,54 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
 
   const renderContent = () => {
     switch (view) {
+      case 'leadership':
+        return (
+          <div className="space-y-12 animate-in fade-in slide-in-from-bottom-10 duration-500">
+            <header className="border-b border-white/5 pb-8 text-center md:text-left">
+              <span className="text-orange-500 text-[10px] font-black uppercase tracking-[0.4em] mb-2 block">The Strategic Engine</span>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tighter">Leadership & Domain Experts</h2>
+              <p className="text-neutral-500 mt-4 text-sm max-w-2xl font-medium leading-relaxed">
+                The tactical layer responsible for executing domain clusters, coordinating high-octane events, and managing guild-wide liaisons.
+              </p>
+            </header>
+            
+            {LEADERSHIP_TEAM.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {LEADERSHIP_TEAM.map((member: any, i: number) => (
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    key={i} 
+                    className="glass p-6 rounded-[2.5rem] border-white/5 hover:border-orange-500/20 group relative overflow-hidden"
+                  >
+                    <div className="flex gap-6 items-center mb-6">
+                      <div className="w-16 h-16 rounded-2xl overflow-hidden shrink-0 border border-white/10 group-hover:border-orange-500/40 transition-colors">
+                        <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-black text-orange-500 uppercase tracking-widest block mb-1">{member.role}</span>
+                        <h4 className="text-lg font-bold text-white tracking-tight">{member.name}</h4>
+                      </div>
+                    </div>
+                    <p className="text-xs text-neutral-400 leading-relaxed font-medium italic mb-2">
+                      "{member.desc}"
+                    </p>
+                    <div className="absolute top-6 right-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                      <span className="text-4xl">🏛️</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <div className="py-32 flex flex-col items-center justify-center text-center opacity-40">
+                <div className="w-20 h-20 rounded-full border border-dashed border-white/20 flex items-center justify-center text-3xl mb-6">
+                  ⏳
+                </div>
+                <h4 className="text-xl font-black uppercase tracking-widest text-white mb-2">Registry Under Maintenance</h4>
+                <p className="text-sm font-medium text-neutral-500 max-w-xs">Domain leads and tactical coordinators will be listed shortly. Deployment in progress.</p>
+              </div>
+            )}
+          </div>
+        );
       case 'guidelines':
         return (
           <div className="space-y-10 animate-in fade-in slide-in-from-bottom-10 duration-500">
@@ -348,7 +399,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
                 { date: 'NOV 05', event: 'TF-Lite IoT Sprint', type: 'Hackathon' },
                 { date: 'NOV 18', event: 'Guest Talk: GDE Experts', type: 'Industry' },
                 { date: 'DEC 01', event: 'Winter Selection Kickoff', type: 'Admin' }
-              ].map((ev, i) => (
+              ].map((ev: any, i: number) => (
                 <div key={i} className="glass p-6 rounded-2xl border-white/5 hover:border-orange-500/30 transition-all flex items-start gap-4">
                   <div className="bg-orange-600/10 border border-orange-500/20 rounded-lg px-3 py-2 text-center shrink-0">
                     <p className="text-[10px] font-black text-orange-500 leading-none">{ev.date.split(' ')[0]}</p>

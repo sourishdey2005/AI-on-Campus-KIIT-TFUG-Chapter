@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+// Added Variants to import list
+import { motion, useReducedMotion, Variants } from 'framer-motion';
 
 interface SectionProps {
   children: React.ReactNode;
@@ -10,7 +12,8 @@ interface SectionProps {
 const Section: React.FC<SectionProps> = ({ children, id, className = "" }) => {
   const shouldReduceMotion = useReducedMotion();
 
-  const variants = {
+  // Explicitly typed as Variants to fix string-to-literal assignment error for 'ease: "easeOut"'
+  const variants: Variants = {
     hidden: { 
       opacity: 0, 
       y: shouldReduceMotion ? 0 : 30 

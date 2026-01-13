@@ -47,6 +47,7 @@ const Footer: React.FC<FooterProps> = ({ onOpenPortal }) => {
           <div>
             <h5 className="font-bold mb-6 text-sm uppercase tracking-widest text-white">Selection</h5>
             <ul className="space-y-4 text-sm text-neutral-500">
+              <li><button onClick={() => onOpenPortal('leadership')} className="hover:text-white transition-colors text-left">Team Leadership</button></li>
               <li><button onClick={() => onOpenPortal('recruitment')} className="hover:text-white transition-colors text-left">Recruitment 2026</button></li>
               <li><button onClick={() => onOpenPortal('process')} className="hover:text-white transition-colors text-left">Interview Process</button></li>
               <li><button onClick={() => onOpenPortal('bylaws')} className="hover:text-white transition-colors text-left">Society Bylaws</button></li>

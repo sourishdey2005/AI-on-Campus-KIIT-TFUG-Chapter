@@ -149,3 +149,5 @@ export const ORG_CHART: TeamMember[] = [
   { name: 'Anusmita Sahu', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' },
   { name: 'Domain POCs & coordinators', role: 'Technical Execution', level: 3 }
 ];
+
+export const LEADERSHIP_TEAM = [];
