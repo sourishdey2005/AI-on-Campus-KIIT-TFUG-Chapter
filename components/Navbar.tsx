@@ -15,15 +15,10 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Ecosystem', href: '#about' },
-    { name: 'Architecture', href: '#architecture' },
-    { name: 'Governance', href: '#governance' }
-  ];
-
-  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
-  const tensorflowLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217422/Tensorflow_ddxbsg.jpg";
-  const kiitLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217413/KIIT_c2jkgi.jpg";
+  // Optimized Cloudinary URLs with f_auto (format) and q_auto (quality)
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768216173/aiguild_1_1_lrlfk4.png";
+  const tensorflowLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768217422/Tensorflow_ddxbsg.jpg";
+  const kiitLogoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768217413/KIIT_c2jkgi.jpg";
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -31,6 +26,12 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
     setIsMobileMenuOpen(false);
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const navLinks = [
+    { name: 'Ecosystem', href: '#about' },
+    { name: 'Architecture', href: '#architecture' },
+    { name: 'Governance', href: '#governance' }
+  ];
 
   return (
     <>
@@ -43,7 +44,13 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
           <div className="flex items-center gap-3 md:gap-4 lg:gap-6">
             <a href="#" className="flex items-center gap-2 md:gap-4 group">
               <div className="w-9 h-9 md:w-11 md:h-11 bg-white/5 backdrop-blur-md border border-white/10 rounded-xl flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform shadow-lg">
-                <img src={logoUrl} alt="AI Guild Logo" className="w-full h-full object-contain" />
+                <img 
+                  src={logoUrl} 
+                  alt="AI Guild Logo" 
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="hidden lg:block">
                 <h1 className="text-base md:text-lg font-black tracking-tighter leading-none">AI Guild on Campus</h1>
@@ -56,12 +63,24 @@ const Navbar: React.FC<NavbarProps> = ({ onOpenPortal }) => {
             <div className="flex items-center gap-2 md:gap-3">
               {/* KIIT Logo */}
               <div className="w-9 h-9 md:w-11 md:h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-lg group">
-                <img src={kiitLogoUrl} alt="KIIT University Logo" className="w-full h-full object-contain p-0.5" />
+                <img 
+                  src={kiitLogoUrl} 
+                  alt="KIIT University Logo" 
+                  className="w-full h-full object-contain p-0.5" 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               {/* TensorFlow Logo */}
               <div className="w-9 h-9 md:w-11 md:h-11 bg-white backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center overflow-hidden shadow-lg group">
-                <img src={tensorflowLogoUrl} alt="TensorFlow Logo" className="w-full h-full object-contain p-0.5" />
+                <img 
+                  src={tensorflowLogoUrl} 
+                  alt="TensorFlow Logo" 
+                  className="w-full h-full object-contain p-0.5" 
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>

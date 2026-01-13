@@ -30,9 +30,10 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
     };
   }, []);
 
-  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768216173/aiguild_1_1_lrlfk4.png";
-  const tensorflowUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217422/Tensorflow_ddxbsg.jpg";
-  const kiitUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/v1768217413/KIIT_c2jkgi.jpg";
+  // Optimized Cloudinary URLs with f_auto (format) and q_auto (quality)
+  const logoUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768216173/aiguild_1_1_lrlfk4.png";
+  const tensorflowUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768217422/Tensorflow_ddxbsg.jpg";
+  const kiitUrl = "https://res.cloudinary.com/dodhvvewu/image/upload/f_auto,q_auto/v1768217413/KIIT_c2jkgi.jpg";
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center pt-28 md:pt-32 pb-20 overflow-hidden mesh-bg group">
@@ -69,6 +70,8 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
                 src={kiitUrl}
                 alt="KIIT University Logo"
                 className="w-full h-full object-contain p-2 md:p-4"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
 
@@ -83,6 +86,8 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
                 src={logoUrl}
                 alt="AI Guild Logo"
                 className="w-full h-full object-contain"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
 
@@ -97,6 +102,8 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
                 src={tensorflowUrl}
                 alt="TensorFlow Official Logo"
                 className="w-full h-full object-contain p-2 md:p-4"
+                loading="lazy"
+                decoding="async"
               />
             </motion.div>
           </div>
@@ -178,16 +185,16 @@ const Hero: React.FC<HeroProps> = ({ onOpenPortal }) => {
           </motion.div>
         </div>
 
-        <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[180px] xl:w-[220px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
-          <motion.div whileHover={{ scale: 1.05 }} className="glass p-5 rounded-[2rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
-             <div className="flex items-center gap-3 mb-4 xl:mb-5">
-                <div className="w-6 h-6 xl:w-8 xl:h-8 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500 text-sm">📈</div>
+        <div className="absolute top-[20%] right-[3%] xl:right-[5%] w-[150px] xl:w-[180px] animate-float pointer-events-auto z-10" style={{ animationDelay: '2.8s' }}>
+          <motion.div whileHover={{ scale: 1.05 }} className="glass p-4 rounded-[1.5rem] border-white/10 shadow-2xl bg-gradient-to-br from-blue-500/5 to-transparent">
+             <div className="flex items-center gap-2 mb-3">
+                <div className="w-6 h-6 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 text-xs">📈</div>
                 <div>
-                   <p className="text-[8px] xl:text-[9px] font-black text-neutral-500 uppercase tracking-widest">Growth Velocity</p>
-                   <p className="text-[10px] xl:text-xs font-bold text-white">mAP Optimization</p>
+                   <p className="text-[7px] font-black text-neutral-500 uppercase tracking-widest">Growth Velocity</p>
+                   <p className="text-[9px] font-bold text-white">mAP Optimization</p>
                 </div>
              </div>
-             <svg className="w-full h-10 xl:h-12 stroke-blue-500 fill-none" viewBox="0 0 280 48">
+             <svg className="w-full h-8 stroke-blue-500 fill-none" viewBox="0 0 280 48">
                 <path d="M0,40 L30,35 L60,42 L90,20 L120,25 L150,10 L180,15 L210,5 L240,12 L280,0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
           </motion.div>
