@@ -16,7 +16,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
       role: 'Faculty In-Charge', 
       cluster: 'Oversight', 
       bio: 'Directing the academic and research initiatives of the AI Guild with a focus on institutional alignment.',
-      image: null 
+      image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768279605/cd11e357-70b7-44a2-b538-b976caa08189_dvlya7.jpg' 
     },
     { 
       name: 'Sourish Dey', 
@@ -276,7 +276,7 @@ const Portal: React.FC<PortalProps> = ({ view, onClose }) => {
             <div className="glass p-10 rounded-[3rem] border-white/10 space-y-8">
               <div className="space-y-4">
                 <h3 className="text-xl font-bold">Eligibility & Intake</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">Intake is restricted to sophomore and junior students demonstrating high technical aptitude or strategic operational potential.</p>
+                <p className="text-neutral-400 text-sm client-relaxed">Intake is restricted to sophomore and junior students demonstrating high technical aptitude or strategic operational potential.</p>
               </div>
               <div className="grid gap-4">
                 <button className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black uppercase tracking-widest text-xs hover:bg-blue-500 transition-all shadow-xl">Start Technical Assessment</button>

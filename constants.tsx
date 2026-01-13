@@ -138,7 +138,12 @@ export const ACTIVITIES: Activity[] = [
 ];
 
 export const ORG_CHART: TeamMember[] = [
-  { name: 'Sunil Kumar Sawant', role: 'FIC', level: 0 },
+  { 
+    name: 'Sunil Kumar Sawant', 
+    role: 'FIC', 
+    level: 0, 
+    image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768279605/cd11e357-70b7-44a2-b538-b976caa08189_dvlya7.jpg' 
+  },
   { name: 'Sourish Dey', role: 'President', level: 1, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232730/80b22f88-4f08-47a0-aa94-2117cbe80c9b_kbe1ph.jpg' },
   { name: 'Rounak Banerjee', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232565/db891764-0e08-4db4-8be9-caf904aa42b4_tkg91k.jpg' },
   { name: 'Anusmita Sahu', role: 'Vice President', level: 2, image: 'https://res.cloudinary.com/dodhvvewu/image/upload/v1768232581/6cb03a67-af26-4318-9a58-7b9b93422244_ux7z99.jpg' },
